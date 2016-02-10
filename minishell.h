@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:54:56 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 12:24:20 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/10 15:25:27 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ int					sh_exec(t_info *info);
 
 int					ft_error_malloc(void);
 
+void				free_tab(char **tab);
 #endif

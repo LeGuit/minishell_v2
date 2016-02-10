@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 12:28:19 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/10 15:25:28 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,32 @@ static void		init_info(t_info *info)
 	info->status = 0;
 }
 
-void			sh_get_line(t_info *info)
+int				sh_get_line(t_info *info)
 {
 	char		*tmpline;
 	char		*forfree;
+	int			retgnl;
 
-	while (get_next_line(0, &tmpline))
+	while (retgnl = get_next_line(0, &tmpline))
 	{
+		if (retgnl == -1)
+			return (EXIT_FAILURE);
 		forfree = info->line;
 		info->line = ft_strjoin(info->line, tmpline);
 		if (forfree != NULL)
 			free(forfree);
 		free(tmpline);
 	}
+	forfree = info->line;
+	info->line = ft_strtrim(info->line);
+	free(forfree);
+	return (EXIT_SUCCESS);
 }
 
-void		sh_
+void		sh_parse(t_info *info)
+{
+	info->args = ft_strsplit(info->line);
+}
 
 int				sh_loop(void)
 {
@@ -42,11 +52,12 @@ int				sh_loop(void)
 
 	init_info(&info);
 	ft_putendl("$> ");
-	sh_get_line(&info);
+	if(sh_get_line(&info))
+		return (EXIT_FAILURE)
 	sh_parse(&info);
 	sh_exec(&info);
 	free(info.line);
-	free(info.args);
+	free_tab(info.args);
 	while (info.status);
 	return (EXIT_SUCCESS);
 }
