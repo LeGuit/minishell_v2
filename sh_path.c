@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_error.c                                         :+:      :+:    :+:   */
+/*   sh_path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/10 11:54:21 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 16:37:35 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/10 16:51:02 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/10 17:30:24 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int					ft_error_malloc(void)
+void			sh_get_path(t_info *info)
 {
-	ft_putstr_fd("minishell: Out of memory", 2);
-	return (EXIT_FAILURE);
-}
+	int			i;
 
-int					ft_error_execv(t_info *info)
-{
-	(void)info;
-	ft_putstr_fd("minishell: Execv error", 2);
-	return (EXIT_FAILURE);
-}
-
-int					ft_error_fork(t_info *info)
-{
-	(void)info;
-	ft_putstr_fd("minishell: Fork error", 2);
-	return (EXIT_FAILURE);
+	ft_bzero(info->path, PATH_SIZE);
+	info->ptrpath = getcwd(info->path, PATH_SIZE - 1);
+	if (ft_strchr(info->ptrpath, '/'))
+	{
+		i = ft_strlen(info->ptrpath);
+		while (i--)
+		{
+			if(info->ptrpath[i] == '/')
+				break ;
+		}
+		info->cursdir = &(info->path[i + 1]);
+	}
+	else
+		info->cursdir = info->ptrpath;
 }

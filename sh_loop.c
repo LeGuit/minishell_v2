@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 15:25:28 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:32:34 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				sh_get_line(t_info *info)
 	char		*forfree;
 	int			retgnl;
 
-	while (retgnl = get_next_line(0, &tmpline))
+	while ((retgnl = get_next_line(0, &tmpline)))
 	{
 		if (retgnl == -1)
 			return (EXIT_FAILURE);
@@ -43,7 +43,45 @@ int				sh_get_line(t_info *info)
 
 void		sh_parse(t_info *info)
 {
-	info->args = ft_strsplit(info->line);
+	int		i;
+
+	i = 0;
+	while (info->line[i])
+	{
+		if (info->line[i] == '\t' || info->line[i] == '\n'
+			|| info->line[i] == '\r' || info->line[i] == '\a')
+			info->line[i] = ' ';
+	}
+	info->args = ft_strsplit(info->line, ' ');
+}
+
+int				sh_exec(t_info *info)
+{
+	extern char	**environ;
+	pid_t		pid;
+	pid_t		wpid;
+	int			status;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve(info->args[0], info->args, environ) == -1)
+		{
+			ft_error_execv(info);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else if (pid < 0)
+	{
+		ft_error_fork(info);
+		return (EXIT_FAILURE);
+	}
+	else
+	{
+		wpid = waitpid(pid, &status, WUNTRACED);
+		while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+	return (1);
 }
 
 int				sh_loop(void)
@@ -51,9 +89,10 @@ int				sh_loop(void)
 	t_info		info;
 
 	init_info(&info);
-	ft_putendl("$> ");
+	sh_get_path(&info);
+	ft_printf("%s$> ", info.cursdir);
 	if(sh_get_line(&info))
-		return (EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	sh_parse(&info);
 	sh_exec(&info);
 	free(info.line);
