@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 17:32:34 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:39:07 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,35 +53,6 @@ void		sh_parse(t_info *info)
 			info->line[i] = ' ';
 	}
 	info->args = ft_strsplit(info->line, ' ');
-}
-
-int				sh_exec(t_info *info)
-{
-	extern char	**environ;
-	pid_t		pid;
-	pid_t		wpid;
-	int			status;
-
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execve(info->args[0], info->args, environ) == -1)
-		{
-			ft_error_execv(info);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (pid < 0)
-	{
-		ft_error_fork(info);
-		return (EXIT_FAILURE);
-	}
-	else
-	{
-		wpid = waitpid(pid, &status, WUNTRACED);
-		while (!WIFEXITED(status) && !WIFSIGNALED(status));
-	}
-	return (1);
 }
 
 int				sh_loop(void)

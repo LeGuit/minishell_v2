@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:54:56 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 16:56:43 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:50:45 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include "libft/includes/libft.h"
 # define PATH_SIZE	4096
 
@@ -32,8 +33,13 @@ typedef struct		s_info
 int					sh_loop(void);
 int					sh_get_line(t_info *info);
 void				sh_parse(t_info *info);
+int					sh_launch(t_info *info);
 int					sh_exec(t_info *info);
 void				sh_get_path(t_info *info);
+
+int					sh_cd(char **args);
+int					sh_help(char **args);
+int					sh_exit(char **args);
 
 int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
