@@ -6,36 +6,43 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 15:28:02 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 17:38:15 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
+
 static char		*sh_fetch_in_path(char *path, char *cmd)
 {
 	int			i;
-	char		*res;
+	char		*tmp;
+	char		*tmpath;
+	struct stat	statfile;
 
-	i = 0;
-	res = NULL;
-	while (path[i])
+	tmpath = path;
+	while (tmpath)
 	{
-		if (path[i] == ':')
-		{
-			path = &path[i];
-			i = 0;
-		}
-		if (ft_strequ(&path[i], cmd))
-		{
-			res = path;
-			break ;
-		}
-		i++;
+		i = 0;
+		tmp = NULL;
+		cursor = tmpath;
+		while (tmpath[i] != ':')
+			i++;
+		tmp = ft_strncat(tmp, cursor, i);
+		tmp = ft_strcat(tmp, "/");
+		tmp = ft_strcat(tmp, cmd);
+		lstat(tmp, &statfile);
+		if (!statfile.st_mode & S_IXUSR)
+			ft_error_perm(cmd);
+		else if (access(tmp))
+			ft_error_access(cmd);
+		else
+			return (tmp);
+		tmpath = (ft_strchr(tmpath, ':') + 1);
 	}
-	return (res);
+	ft_error_exec(cmd);
+	return (NULL);
 }
-
+/*
 static int		sh_execve(t_info *info)
 {
 	int			retexec;
