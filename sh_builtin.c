@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:35:15 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 15:13:49 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:42:20 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int				sh_cd(t_info *info)
 {
-	if (info->args[1] == NULL || ft_strcmp(info->args[1], "~") == 0)
+	if (info->args[1] == NULL)
 		chdir("HOME");
 	else
 	{

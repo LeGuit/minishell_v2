@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 15:05:28 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:45:59 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int					sh_exec(t_info *info);
 void				sh_get_path(t_info *info);
 char				*sh_get_in_env(const char *name, char **env);
 char				**sh_getenv(char **environ);
+void				sh_tild_to_home(t_info *info);
 
 
 int					sh_nb_builtin(void);
