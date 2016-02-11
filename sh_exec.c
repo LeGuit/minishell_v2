@@ -6,13 +6,13 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 18:46:26 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 18:50:13 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char		*test_path(char *cursor, char *cmd, int size)
+/*
+static void		sh_error_path(char *cursor, char *cmd, int size)
 {
 	char		*tmp;
 	struct stat	statfile;
@@ -26,6 +26,22 @@ static char		*test_path(char *cursor, char *cmd, int size)
 		ft_error_chdir(cmd);
 	else if (access(tmp, 0))
 		ft_error_chdir(cmd);
+}
+*/
+static char		*test_path(char *cursor, char *cmd, int size)
+{
+	char		*tmp;
+	struct stat	statfile;
+
+	tmp = ft_strnew(ft_strlen(cmd) + size + 1);
+	ft_strncpy(tmp, cursor, size);
+	tmp = ft_strcat(tmp, "/");
+	tmp = ft_strcat(tmp, cmd);
+	lstat(tmp, &statfile);
+	if (!statfile.st_mode & S_IXUSR)
+		return (NULL);
+	else if (access(tmp, 0))
+		return (NULL);
 	else
 		return (tmp);
 	return (NULL);
@@ -47,6 +63,7 @@ static char		*sh_fetch_in_path(char *path, char *cmd)
 			i++;
 		if ((res = test_path(cursor, cmd, i)))
 			return (res);
+		free(res);
 		tmpath = (ft_strchr(tmpath, ':') + 1);
 	}
 	ft_error_chdir(cmd);
