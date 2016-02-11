@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 16:26:44 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 18:58:57 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_info
 	char			path[PATH_SIZE];
 	char			*cursdir;
 	char			**env;
+	int				error;
 }					t_info;
 
 int					sh_loop(t_info *info);
