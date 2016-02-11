@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 16:51:02 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 17:30:24 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 10:47:56 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			sh_get_path(t_info *info)
 		i = ft_strlen(info->ptrpath);
 		while (i--)
 		{
-			if(info->ptrpath[i] == '/')
+			if (info->ptrpath[i] == '/')
 				break ;
 		}
 		info->cursdir = &(info->path[i + 1]);

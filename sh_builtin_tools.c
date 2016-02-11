@@ -6,13 +6,14 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 10:16:40 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 10:25:51 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 10:47:35 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char        *builtin_str[] = {
+char		*g_builtin_str[] =
+{
 	"cd",
 	"help",
 	"exit",
@@ -21,7 +22,8 @@ char        *builtin_str[] = {
 	"env"
 };
 
-int         (*builtin_fct[]) (char **) = {
+int			(*g_builtin_fct[]) (char **) =
+{
 	&sh_cd,
 	&sh_help,
 	&sh_exit,
@@ -32,7 +34,5 @@ int         (*builtin_fct[]) (char **) = {
 
 int			sh_nb_builtin(void)
 {
-	return (sizeof(builtin_str) / sizeof(char *));
+	return (sizeof(g_builtin_str) / sizeof(char *));
 }
-
-

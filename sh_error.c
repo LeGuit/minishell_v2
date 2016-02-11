@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 11:54:21 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 17:58:28 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 10:50:32 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int					ft_error_chdir(char *illdir)
 
 	ft_putstr_fd("sh_cd: ", 2);
 	if (stat(illdir, &statfile) == -1)
-		ft_putstr_fd("no such file or directory: ",2);
+		ft_putstr_fd("no such file or directory: ", 2);
 	else if (!(S_ISDIR(statfile.st_mode)))
 		ft_putstr_fd("not a directory: ", 2);
 	else if (!(statfile.st_mode & (S_IXUSR)))

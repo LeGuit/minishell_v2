@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 17:38:59 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 10:50:51 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int				sh_launch(t_info *info)
 	else
 	{
 		wpid = waitpid(pid, &status, WUNTRACED);
-		while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		while (!WIFEXITED(status) && !WIFSIGNALED(status))
+			;
 	}
 	return (1);
 }

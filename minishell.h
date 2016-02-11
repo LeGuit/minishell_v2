@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:54:56 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/10 17:50:45 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 10:52:52 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int					sh_launch(t_info *info);
 int					sh_exec(t_info *info);
 void				sh_get_path(t_info *info);
 
+int					sh_nb_builtin(void);
+
 int					sh_cd(char **args);
 int					sh_help(char **args);
 int					sh_exit(char **args);
@@ -44,6 +46,7 @@ int					sh_exit(char **args);
 int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
 int					ft_error_execv(t_info *info);
+int					ft_error_chdir(char *arg);
 
 void				free_tab(char **tab);
 #endif
