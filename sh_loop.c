@@ -6,22 +6,21 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 16:28:09 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 19:31:39 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 int				sh_get_line(t_info *info)
 {
 	int			retgnl;
 
-	retgnl = get_next_line(0, &info->line);
 	if (retgnl == -1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-
+i*/
 void			sh_parse(t_info *info)
 {
 	int		i;
@@ -39,6 +38,7 @@ void			sh_parse(t_info *info)
 		i++;
 	}
 	info->args = ft_strsplit(info->line, ' ');
+	ft_printf("%s\t%s\t%s\n", info->args[0], info->args[1], info->args[2]);
 	if (tild == 1)
 		sh_tild_to_home(info);
 }
@@ -61,15 +61,20 @@ int				sh_exec(t_info *info)
 
 int				sh_loop(t_info *info)
 {
+	int ret;
+
+	ret = 1;
 	sh_get_path(info);
 	ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
-	if (sh_get_line(info))
+	while ((ret = get_next_line(0, &info->line)) > 0)
+	{
+		ft_printf("ytkhgfkhj");
+//		sh_parse(info);
+	//	info->status = sh_exec(info);
+		free(info->line);
+	}
+//	free_tab(info->args);
+	if (ret == -1)
 		return (EXIT_FAILURE);
-	sh_parse(info);
-	info->status = sh_exec(info);
-	free(info->line);
-	free_tab(info->args);
-	while (info->status)
-		sh_loop(info);
 	return (EXIT_SUCCESS);
 }
