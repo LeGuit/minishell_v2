@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 16:51:02 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 10:47:56 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 14:49:09 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@ void			sh_get_path(t_info *info)
 	int			i;
 
 	ft_bzero(info->path, PATH_SIZE);
-	info->ptrpath = getcwd(info->path, PATH_SIZE - 1);
-	if (ft_strchr(info->ptrpath, '/'))
+	getcwd(info->path, PATH_SIZE - 1);
+	if (ft_strchr(info->path, '/'))
 	{
-		i = ft_strlen(info->ptrpath);
+		i = ft_strlen(info->path);
 		while (i--)
 		{
-			if (info->ptrpath[i] == '/')
+			if (info->path[i] == '/')
 				break ;
 		}
 		info->cursdir = &(info->path[i + 1]);
+
 	}
 	else
-		info->cursdir = info->ptrpath;
+		info->cursdir = info->path;
 }

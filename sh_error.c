@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 11:54:21 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 12:30:05 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 14:03:39 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int					ft_error_malloc(void)
 {
 	ft_putendl_fd("minishell: Out of memory", 2);
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 int					ft_error_execv(char *illdir)

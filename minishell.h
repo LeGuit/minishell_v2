@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/10 10:54:56 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 12:27:31 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/11 15:05:28 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct		s_info
 	char			**args;
 	int				status;
 	char			path[PATH_SIZE];
-	char			*ptrpath;
 	char			*cursdir;
+	char			**env;
 }					t_info;
 
 int					sh_loop(void);
@@ -36,20 +36,26 @@ void				sh_parse(t_info *info);
 int					sh_launch(t_info *info);
 int					sh_exec(t_info *info);
 void				sh_get_path(t_info *info);
+char				*sh_get_in_env(const char *name, char **env);
+char				**sh_getenv(char **environ);
+
 
 int					sh_nb_builtin(void);
 
-int					sh_cd(char **args);
-int					sh_help(char **args);
-int					sh_exit(char **args);
+int					sh_cd(t_info *info);
+int					sh_help(t_info *info);
+int					sh_exit(t_info *info);
+int					sh_pwd(t_info *info);
+int					sh_printenv(t_info *info);
 
 int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
 int					ft_error_execv(char *illdir);
 int					ft_error_chdir(char *arg);
 
+extern char			**environ;
 extern char			*g_builtin_str[];
-extern int			(*g_builtin_fct[])(char **);
+extern int			(*g_builtin_fct[])(t_info *info);
 void				init_info(t_info *info);
 
 void				free_tab(char **tab);
