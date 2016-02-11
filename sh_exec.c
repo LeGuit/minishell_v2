@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 11:59:54 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 12:26:26 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				sh_launch(t_info *info)
 	if (pid == 0)
 	{
 		if (execve(info->args[0], info->args, environ) == -1)
-			ft_error_execv(info);
+			ft_error_execv(info->args[0]);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)

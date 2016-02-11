@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:35:15 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 12:05:53 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 12:34:09 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				sh_help(char **args)
 	i = 0;
 	while (i < sh_nb_builtin())
 	{
-		ft_printf("%5s,\n", g_builtin_str[i]);
+		ft_printf("     %s,\n", g_builtin_str[i]);
 		i++;
 	}
 	return (1);
