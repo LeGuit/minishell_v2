@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:53:08 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 10:50:13 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:26:23 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int			main(void)
 {
-	sh_loop();
+	t_info	info;
+
+	init_info(&info);
+	info.env = sh_getenv(environ);
+	sh_loop(&info);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 16:09:37 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:15:43 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ char			*sh_get_in_env(const char *name, char **env)
 
 	if (env == NULL)
 		env = environ;
-	sizename = ft_strlen(name) - 1;
+	sizename = ft_strlen(name);
 	i = 0;
 	res = NULL;
 	while (env[i] != 0)
 	{
 		if ((res = ft_strchr(env[i], '=')))
 		{
-			ft_printf("env: %d\tressize: %d\tsizename: %d\tres: %s\n", ft_strlen(env[i]), ft_strlen(res), sizename, res);
 			if (((ft_strlen(env[i]) - ft_strlen(res)) == sizename
 					   && !ft_strncmp(env[i], name, sizename)))
 				break;

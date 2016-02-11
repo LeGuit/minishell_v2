@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 15:45:29 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:28:09 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,17 @@ int				sh_exec(t_info *info)
 	return (sh_launch(info));
 }
 
-int				sh_loop(void)
+int				sh_loop(t_info *info)
 {
-	t_info		info;
-
-	init_info(&info);
-	info.env = sh_getenv(environ);
-	sh_get_path(&info);
-	ft_printf("\033[31m%s\033[39m $> ", info.cursdir);
-	if (sh_get_line(&info))
+	sh_get_path(info);
+	ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
+	if (sh_get_line(info))
 		return (EXIT_FAILURE);
-	sh_parse(&info);
-	info.status = sh_exec(&info);
-	free(info.line);
-	free_tab(info.args);
-	while (info.status)
-		sh_loop();
+	sh_parse(info);
+	info->status = sh_exec(info);
+	free(info->line);
+	free_tab(info->args);
+	while (info->status)
+		sh_loop(info);
 	return (EXIT_SUCCESS);
 }

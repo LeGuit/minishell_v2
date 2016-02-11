@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 15:45:59 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:26:44 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct		s_info
 	char			**env;
 }					t_info;
 
-int					sh_loop(void);
+int					sh_loop(t_info *info);
 int					sh_get_line(t_info *info);
 void				sh_parse(t_info *info);
 int					sh_launch(t_info *info);
