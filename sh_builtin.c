@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:35:15 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 10:55:08 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 12:05:53 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int				sh_help(char **args)
 {
 	int			i;
 
+	(void)args;
 	ft_putendl("Gwoodwar Minishell");
 	ft_putendl("Type program names and arguments, press enter.");
 	ft_putendl("Here are the built in:");
@@ -42,5 +43,6 @@ int				sh_help(char **args)
 
 int				sh_exit(char **args)
 {
-	return (0);
+	(void)args;
+	exit(EXIT_SUCCESS);
 }

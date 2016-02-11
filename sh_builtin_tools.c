@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 10:16:40 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 10:47:35 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 11:01:20 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int			(*g_builtin_fct[]) (char **) =
 	&sh_cd,
 	&sh_help,
 	&sh_exit,
-	&sh_setenv,
-	&sh_unsetenv,
-	&sh_env
+//	&sh_setenv,
+//	&sh_unsetenv,
+//	&sh_env
 };
 
 int			sh_nb_builtin(void)

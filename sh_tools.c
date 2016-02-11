@@ -6,13 +6,13 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 10:32:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 10:32:28 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/11 11:02:55 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void			init_info(t_info *info)
+void				init_info(t_info *info)
 {
 	info->line = NULL;
 	info->args = NULL;
