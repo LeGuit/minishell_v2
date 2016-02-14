@@ -19,8 +19,8 @@ char		*g_builtin_str[] =
 	"exit",
 	"pwd",
 	"printenv",
-	"setenv",
 	"unsetenv",
+	"setenv",
 	"env"
 };
 
@@ -30,9 +30,9 @@ int			(*g_builtin_fct[]) (t_info *) =
 	&sh_help,
 	&sh_exit,
 	&sh_pwd,
-	&sh_printenv
+	&sh_printenv,
+	&sh_unsetenv
 //	&sh_setenv,
-//	&sh_unsetenv,
 //	&sh_env
 };
 

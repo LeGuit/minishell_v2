@@ -11,16 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-int				sh_get_line(t_info *info)
-{
-	int			retgnl;
 
-	if (retgnl == -1)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-i*/
 void			sh_parse(t_info *info)
 {
 	int		i;
@@ -38,7 +29,7 @@ void			sh_parse(t_info *info)
 		i++;
 	}
 	info->args = ft_strsplit(info->line, ' ');
-	ft_printf("%s\t%s\t%s\n", info->args[0], info->args[1], info->args[2]);
+	ft_printf("%s\t%s\t%s\t%s\n", info->args[0], info->args[1], info->args[2]);
 	if (tild == 1)
 		sh_tild_to_home(info);
 }
@@ -68,12 +59,14 @@ int				sh_loop(t_info *info)
 	ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
 	while ((ret = get_next_line(0, &info->line)) > 0)
 	{
-		ft_printf("ytkhgfkhj");
-//		sh_parse(info);
-	//	info->status = sh_exec(info);
+		info->env = sh_getenv(environ);
+		sh_parse(info);
+		info->status = sh_exec(info);
+		free_tab(info->args);
 		free(info->line);
+		sh_get_path(info);
+		ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
 	}
-//	free_tab(info->args);
 	if (ret == -1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

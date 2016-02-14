@@ -57,3 +57,25 @@ char		**sh_getenv(char **environ)
 	env[i] = 0;
 	return (env);
 }
+
+int		sh_unsetenv(t_info *info)
+{
+	int	i;
+	char	*unset;
+
+	if ((unset = sh_get_in_env(info->args[1], info->env)))
+	{
+		i = 0;
+		while (info->env[i] != unset)
+			i++;
+		free(unset);
+		while (info->env[i + 1] != 0)
+		{
+			info->env[i] = info->env[i + 1];
+			i++;
+		}
+	}
+	sh_printenv(info);
+	ft_printf("LOL");
+	return (0);
+}

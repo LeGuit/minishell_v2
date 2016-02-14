@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 C =	clang
-FLAGS =	-Wall -Werror -Wextra
+FLAGS =	-Wall -Wextra
 NAME =	minishell
 LIB =	libft/libftprintf.a
 HEAD =	ft_ls.h

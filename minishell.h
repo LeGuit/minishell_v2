@@ -49,6 +49,7 @@ int					sh_help(t_info *info);
 int					sh_exit(t_info *info);
 int					sh_pwd(t_info *info);
 int					sh_printenv(t_info *info);
+int					sh_unsetenv(t_info *info);
 
 int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);

@@ -17,7 +17,6 @@ int			main(void)
 	t_info	info;
 
 	init_info(&info);
-	info.env = sh_getenv(environ);
 	sh_loop(&info);
 	return (EXIT_SUCCESS);
 }
