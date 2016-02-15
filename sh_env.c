@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 19:29:23 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 20:21:59 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,10 @@ int				sh_env(t_info *info)
 	{ft_printf("NO OPT");
 		env_set(&context);
 	}
-//	ft_printf("arg[0]: %s\targ[1]: %s\n", context.args[0], context.args[1]);
 	ft_printf("arg[0]: %s\n", context.args[0]);
-	if (context.args[0])
+	if (ft_strequ(context.args[0], "cd"))
+		return (EXIT_SUCCESS);
+	else if (context.args[0])
 	{ft_putendl("ARGS");
 		sh_exec(&context);}
 	else
