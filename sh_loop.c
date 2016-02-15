@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 10:14:58 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 11:23:59 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ int				sh_loop(t_info *info)
 
 	ret = 1;
 	sh_get_path(info);
+	info->env = sh_getenv(environ);
 	ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
 	while ((ret = get_next_line(0, &info->line)) > 0)
 	{
-		info->env = sh_getenv(environ);
 		sh_parse(info);
 		info->status = sh_exec(info);
 		sh_get_path(info);

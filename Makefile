@@ -6,7 +6,7 @@
 #    By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/10 10:57:07 by gwoodwar          #+#    #+#              #
-#    Updated: 2016/02/15 10:10:26 by gwoodwar         ###   ########.fr        #
+#    Updated: 2016/02/15 11:30:05 by gwoodwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS =	sh_loop.c \
 		sh_builtin_tools.c \
 		sh_tools.c \
 		sh_env.c \
+		sh_env_tools.c \
 		main.c
 
 OBJS =	$(SRCS:.c=.o)
