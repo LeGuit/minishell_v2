@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:35:15 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 14:02:15 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 14:33:01 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				sh_cd(t_info *info)
 	}
 	oldpath = ft_strjoin("OLDPWD=", info->path);
 	sh_replace_env(oldpath, info->env);
+	free(oldpath);
 	return (1);
 }
 
