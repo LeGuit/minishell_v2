@@ -12,24 +12,34 @@
 
 #include "minishell.h"
 
-int				sh_multi(t_info *info)
+int			sh_multi(t_info *info)
 {
-	int			i;
+	int		i;
+	int		count;
+	char		*save;
 
-	if (!ft_strchr(info->line, ':'))
+	if (!ft_strchr(info->line, ';'))
 		return (0);
-	i = 0
+	i = 0;
+	count = 1;
+	save = info->line;
 	while (info->line[i])
 	{
-		if (info->line[i])
+		if (info->line[i] == ';')
+		{
 			info->line[i] = '\0';
+			count++;
+		}
 		i++;
 	}
-	while ((info->line = ft_strchr(info->line, '\0') + 1))
+	while (count != 0)
 	{
 		sh_parse(info);
 		info->status = sh_exec(info);
+		info->line = ft_strchr(info->line, '\0') + 1;
+		count--;
 	}
+	info->line = save;
 	return (1);
 }
 
