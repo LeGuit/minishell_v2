@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sh_sig_binding.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/10 10:53:08 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 14:10:44 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/15 14:12:22 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/15 14:26:52 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <signal.h>
 
-int			main(void)
+static t_info	*g_info = NULL;
+
+static void		sh_sig_bind(int sig)
 {
-	t_info	info;
+	(void)sig;
+	ft_printf("\n\033[31m%s\033[39m $> ", g_info->cursdir);
+	SET(g_info->sig, SIG_C);
+}
 
-	init_info(&info);
-	sh_sig_init(&info);
-	sh_loop(&info);
-	ft_putendl("exit");
-	return (EXIT_SUCCESS);
+void			sh_sig_init(t_info *info)
+{
+	(void)info;
+	g_info = info;
+	signal(SIGINT, &sh_sig_bind);
 }

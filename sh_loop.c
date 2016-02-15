@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 11:23:59 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 14:27:03 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ int				sh_loop(t_info *info)
 	ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
 	while ((ret = get_next_line(0, &info->line)) > 0)
 	{
+		UNSET(info->sig, SIG_C);
 		sh_parse(info);
 		info->status = sh_exec(info);
 		sh_get_path(info);
-		ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
+		if (!GET(info->sig, SIG_C))
+			ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
 		free_tab(info->args);
 		free(info->line);
 	}

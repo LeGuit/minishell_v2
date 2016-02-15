@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 13:48:57 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 14:26:50 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/stat.h>
 # include "libft/includes/libft.h"
 # define PATH_SIZE	4096
+# define SIG_C		(1u << 1)
 
 typedef struct		s_info
 {
@@ -28,7 +29,7 @@ typedef struct		s_info
 	char			path[PATH_SIZE];
 	char			*cursdir;
 	char			**env;
-	int				error;
+	int				sig;
 }					t_info;
 
 int					sh_loop(t_info *info);
@@ -59,6 +60,7 @@ int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
 int					ft_error_execv(char *illdir);
 int					ft_error_chdir(char *arg);
+void				sh_sig_init(t_info *info);
 
 extern char			**environ;
 extern char			*g_builtin_str[];
