@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:35:15 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 17:14:09 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 12:46:46 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 int				sh_cd(t_info *info)
 {
 	char		*path;
+	char		*oldpath;
 
 	if (info->args[1] == NULL)
 	{
 		path = sh_get_in_env("HOME", info->env);
 		chdir(path);
-	}// need to set env OLDPW
+	}
 	else if (ft_strequ(info->args[1], "-"))
 	{
 		path = sh_get_in_env("OLDPWD", info->env);
+		oldpath = ft_strjoin("OLDPWD=", info->path);
+		sh_replace_env(oldpath, info->env);
 		chdir(path);
 	}
 	else

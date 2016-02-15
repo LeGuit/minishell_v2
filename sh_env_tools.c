@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 11:27:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 11:29:39 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 12:33:32 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char			*sh_get_in_env(const char *name, char **env)
 		env = environ;
 	sizename = ft_strlen(name);
 	i = 0;
-	res = NULL;
 	while (env[i] != 0)
 	{
 		if ((res = ft_strchr(env[i], '=')))
@@ -33,6 +32,8 @@ char			*sh_get_in_env(const char *name, char **env)
 		}
 		i++;
 	}
+	if (env[i] == 0)
+		return (NULL);
 	res++;
 	return (res);
 }
@@ -56,4 +57,43 @@ char			**sh_getenv(char **environ)
 	}
 	env[i] = 0;
 	return (env);
+}
+
+void			sh_replace_env(char *args, char **env)
+{
+	size_t		sarg;
+	int			i;
+
+	sarg = ft_strlen_ch(args, '=');
+	i = 0;
+	while (env[i])
+	{
+		if (!ft_strncmp(args, env[i], sarg))
+		{
+			free(env[i]);
+			env[i] = ft_strdup(args);
+		}
+		i++;
+	}
+}
+
+void			sh_add_env(char *args, t_info *info)
+{
+	char		**tmp;
+	int			i;
+
+	tmp = info->env;
+	i = 0;
+	while (tmp[i])
+		i++;
+	info->env = (char **)malloc(sizeof(char *) * (i + 2));
+	i = 0;
+	while (tmp[i])
+	{
+		info->env[i] = tmp[i];
+		i++;
+	}
+	free(tmp);
+	info->env[i] = ft_strdup(args);
+	info->env[i + 1] = 0;
 }

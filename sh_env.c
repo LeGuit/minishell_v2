@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 11:30:16 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 12:23:19 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,33 @@ int			sh_unsetenv(t_info *info)
 		}
 	}
 	sh_printenv(info);
-	return (0);
+	return (EXIT_SUCCESS);
 }
-/*
+
 int			sh_setenv(t_info *info)
 {
+	int		i;
+	char	name[128];
 
-}*/
+	i = 1;
+	while (info->args[i])
+	{
+		if (ft_strchr(info->args[i], '='))
+		{
+			ft_bzero(name, 128);
+			ft_strncpy(name, info->args[i], ft_strlen_ch(info->args[i], '='));
+			if ((sh_get_in_env(name, info->env)))
+				sh_replace_env(info->args[i], info->env);
+			else
+				sh_add_env(info->args[i], info);
+		}
+		else
+		{
+			ft_printf("setenv: %s: No such file or directory\n", info->args[i]);
+			return (EXIT_FAILURE);
+		}
+		i++;
+	}
+	sh_printenv(info);
+	return (EXIT_SUCCESS);
+}
