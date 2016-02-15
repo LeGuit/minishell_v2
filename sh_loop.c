@@ -12,6 +12,27 @@
 
 #include "minishell.h"
 
+int				sh_multi(t_info *info)
+{
+	int			i;
+
+	if (!ft_strchr(info->line, ':'))
+		return (0);
+	i = 0
+	while (info->line[i])
+	{
+		if (info->line[i])
+			info->line[i] = '\0';
+		i++;
+	}
+	while ((info->line = ft_strchr(info->line, '\0') + 1))
+	{
+		sh_parse(info);
+		info->status = sh_exec(info);
+	}
+	return (1);
+}
+
 void			sh_parse(t_info *info)
 {
 	int		i;
@@ -52,6 +73,7 @@ int				sh_exec(t_info *info)
 int				sh_loop(t_info *info)
 {
 	int ret;
+	int	multi;
 
 	ret = 1;
 	sh_get_path(info);
@@ -59,8 +81,11 @@ int				sh_loop(t_info *info)
 	while ((ret = get_next_line(0, &info->line)) > 0)
 	{
 		UNSET(info->sig, BIT_A);
-		sh_parse(info);
-		info->status = sh_exec(info);
+		if (!(multi = sh_multi(info)))
+		{
+			sh_parse(info);
+			info->status = sh_exec(info);
+		}
 		sh_get_path(info);
 		if (!GET(info->sig, SIG_C))
 			ft_printf("\033[31m%s\033[39m $> ", info->cursdir);

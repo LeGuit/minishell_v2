@@ -41,6 +41,7 @@ typedef struct		s_info
 int					sh_loop(t_info *info);
 int					sh_get_line(t_info *info);
 void				sh_parse(t_info *info);
+int					sh_multi(t_info *info);
 int					sh_launch(t_info *info);
 int					sh_exec(t_info *info);
 void				sh_get_path(t_info *info);
