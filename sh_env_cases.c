@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:42:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 20:14:36 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 20:45:35 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			env_i(t_info *context, int nbopt)
 	char		**tmp;
 
 	ft_tabdel(&context->env);
-	ft_printf("arg[0]: %s\tnbopt: %d\n", context->args[0], nbopt);
 	tmp = context->args;
 	context->args = ft_tabdup(&context->args[nbopt]);
 	ft_tabdel(&tmp);
@@ -45,6 +44,7 @@ void			env_set(t_info *context)
 	}
 	else
 	{
+	ft_putendl("test");
 		tmp = context->args;
 		context->args = ft_tabdup(&context->args[1]);
 		ft_tabdel(&tmp);

@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 20:21:59 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 20:49:05 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,20 @@ int				sh_env(t_info *info)
 	while (env_opt(context.args[i], &context))
 		i++;
 	if (GET(context.opt, OPT_I))
-	{ft_printf("OPT I");
-		env_i(&context, i);}
-	else
-	{ft_printf("NO OPT");
-		env_set(&context);
+		env_i(&context, i);
+	else if (!context.args[1])
+	{
+		sh_printenv(&context);
+		return (EXIT_SUCCESS);
 	}
-	ft_printf("arg[0]: %s\n", context.args[0]);
+	else
+		env_set(&context);
 	if (ft_strequ(context.args[0], "cd"))
 		return (EXIT_SUCCESS);
 	else if (context.args[0])
-	{ft_putendl("ARGS");
-		sh_exec(&context);}
+		sh_exec(&context);
 	else
-	{ft_putendl("NO ARGS");
-		sh_printenv(&context);}
+		sh_printenv(&context);
 	sh_clear_context(&context);
 	return (EXIT_SUCCESS);
 }
