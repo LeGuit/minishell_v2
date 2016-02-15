@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 10:16:40 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 13:48:43 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 14:45:59 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int			(*g_builtin_fct[]) (t_info *) =
 	&sh_echo,
 	&sh_printenv,
 	&sh_unsetenv,
-	&sh_setenv
-//	&sh_env
+	&sh_setenv,
+	&sh_env
 };
 
 int			sh_nb_builtin(void)

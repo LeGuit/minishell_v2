@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 13:58:59 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 15:23:25 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,20 @@ static void		sh_execve(t_info *info)
 {
 	int			retexec;
 	char		*path;
+	char		defpath[14];
 
 	if (ft_strchr(info->args[0], '/'))
 		retexec = execve(info->args[0], info->args, info->env);
 	else
 	{
 		path = sh_get_in_env("PATH", info->env);
-		path = sh_fetch_in_path(path, info->args[0]);
+		if (!path)
+		{
+			ft_strcpy(defpath, "/bin:/usr/bin");
+			path = sh_fetch_in_path(defpath, info->args[0]);
+		}
+		else
+			path = sh_fetch_in_path(path, info->args[0]);
 		execve(path, info->args, info->env);
 	}
 	exit(EXIT_SUCCESS);

@@ -6,15 +6,15 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 12:23:19 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 15:10:02 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			sh_unsetenv(t_info *info)
+int				sh_unsetenv(t_info *info)
 {
-	int		i;
+	int			i;
 	
 	if (sh_get_in_env(info->args[1], info->env))
 	{
@@ -32,10 +32,10 @@ int			sh_unsetenv(t_info *info)
 	return (EXIT_SUCCESS);
 }
 
-int			sh_setenv(t_info *info)
+int				sh_setenv(t_info *info)
 {
-	int		i;
-	char	name[128];
+	int			i;
+	char		name[128];
 
 	i = 1;
 	while (info->args[i])
@@ -57,5 +57,63 @@ int			sh_setenv(t_info *info)
 		i++;
 	}
 	sh_printenv(info);
+	return (EXIT_SUCCESS);
+}
+
+static void 	sh_context(t_info *info, t_info *context)
+{
+	int			i;
+
+	context->line = ft_strdup(info->line);
+	i = 0;
+	while (info->args[i])
+		i++;
+	context->args = (char **)malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while (info->args[++i])
+		context->args[i] = ft_strdup(info->args[i]);
+	context->args[i] = 0;
+	i = 0;
+	while (info->env[i])
+		i++;
+	context->env = (char **)malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while (info->env[++i])
+		context->env[i] = ft_strdup(info->env[i]);
+	context->env[i] = 0;
+	context->status = info->status;
+	context->sig = info->sig;
+	context->cursdir = ft_strdup(info->cursdir);
+	ft_strcpy(context->path, info->path);
+}
+
+static void		sh_clear_context(t_info *context)
+{
+	free(context->line);
+	free_tab(context->args);
+	free_tab(context->env);
+	free(context->cursdir);
+}
+
+int				sh_env(t_info *info)
+{
+	t_info		context;
+	int			i;
+
+	sh_context(info, &context);
+	if (ft_strequ(context.args[1], "-u"))
+	{
+		free(context.args[1]);
+		i = 1;
+		while (context.args[i])
+		{
+			context.args[i] = context.args[i + 1];
+			i++;
+		}
+		sh_unsetenv(&context);
+	}
+	else
+		sh_printenv(&context);
+	sh_clear_context(&context);
 	return (EXIT_SUCCESS);
 }

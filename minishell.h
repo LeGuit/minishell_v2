@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 14:26:50 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 14:45:17 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int					sh_echo(t_info *info);
 int					sh_printenv(t_info *info);
 int					sh_unsetenv(t_info *info);
 int					sh_setenv(t_info *info);
+int					sh_env(t_info *info);
 
 int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
