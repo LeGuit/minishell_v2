@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 18:17:27 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 18:34:47 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int				sh_exec(t_info *info)
 {
 	int			i;
 
-	ft_printf("arg[0]: %s\n", info->args[0]);
 	if (info->args[0] == NULL)
 		return (1);
 	i = 0;

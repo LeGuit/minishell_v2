@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 18:16:40 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 18:40:46 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int					sh_printenv(t_info *info);
 int					sh_unsetenv(t_info *info);
 int					sh_setenv(t_info *info);
 int					sh_env(t_info *info);
+int					env_opt(char *line, t_info *context);
 
 void				env_i(t_info *context, int opt);
 void				env_u(t_info *context);
@@ -70,6 +71,7 @@ int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
 int					ft_error_execv(char *illdir);
 int					ft_error_chdir(char *arg);
+int					ft_error_parse(char illopt);
 void				sh_sig_init(t_info *info);
 
 extern char			*g_builtin_str[];

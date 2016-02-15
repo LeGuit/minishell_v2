@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 11:54:21 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 14:03:39 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 18:43:13 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ int					ft_error_chdir(char *illdir)
 		ft_putstr_fd("permission denied: ", 2);
 	ft_putendl_fd(illdir, 2);
 	return (EXIT_FAILURE);
+}
+
+int			ft_error_parse(char illopt)
+{
+	ft_putstr_fd("sh_env: illegal option -- ", 2);
+	ft_putchar_fd(illopt, 2);
+	ft_putstr_fd("\nusage: sh_env [-i] [-u name]\n", 2);
+	ft_putstr_fd("              [name = value]"
+			" [utility [argument ...]]\n", 2);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:42:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 18:16:59 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 19:35:47 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void			env_i(t_info *context, int nbopt)
 	char		**tmp;
 
 	ft_tabdel(&context->env);
+	ft_printf("arg[0]: %s\tnbopt: %d\n", context->args[0], nbopt);
 	tmp = context->args;
-	context->args = ft_tabdup(context->args + nbopt + 1);
+	context->args = ft_tabdup(&context->args[nbopt]);
 	ft_tabdel(&tmp);
 }
 
@@ -30,36 +31,77 @@ void			env_set(t_info *context)
 	if (ft_strchr(context->args[1], '='))
 	{
 		SET(context->sig, ENV_Y);
+		ft_printf("arg[0]: %s\targ[1]: %s\targ[2]: %s\n", context->args[0], context->args[1], context->args[2]);
 		sh_setenv(context);
 		tmp = context->args;
-		i = 0;
+		i = 1;
 		while (ft_strchr(context->args[i], '='))
 			i++;
-		context->args = ft_tabdup(context->args + i);
+		ft_putstr("lol");
+		ft_printf("i: %d\n", i);
+		context->args = ft_tabdup(&context->args[i]);
+		ft_tabdel(&tmp);
+	}
+	else
+	{
+		tmp = context->args;
+		context->args = ft_tabdup(&context->args[1]);
 		ft_tabdel(&tmp);
 	}
 }
 
-/*
-void			env_u(t_info *context)
+static int		invalid_opt(char option, t_info *context)
 {
-	int			i;
+	if (!(ft_strchr("iu", option)))
+		return (1);
+	if (option == 'i')
+		SET(context->opt, OPT_I);
+	else if (option == 'u')
+		SET(context->opt, OPT_U);
+	return (0);
+}
 
-	free(context->args[0]);
-	free(context->args[1]);
-	i = 2;
-	while (context->args[i])
-	{
-		context->args[i - 2] = context->args[i];
-		i++;
-	}
-	sh_unsetenv(context);
-	free(context->args[0]);
+int				env_opt(char *line, t_info *context)
+{
+	size_t		i;
+
+	if (!line)
+		return (0);
+	if (line[0] != '-')
+		return (0);
+	if (ft_strequ(line, "--"))
+		return (0);
+	if (line[0] == '-' && line[1] == '\0')
+		return (0);
 	i = 1;
-	while (context->args[i])
+	while (i < ft_strlen(line))
 	{
-		context->args[i - 1] = context->args[i];
+		if (invalid_opt(line[i], context))
+			ft_error_parse(line[i]);
 		i++;
 	}
-	context->args[i] = 0;
-}*/
+	return (1);
+}
+/*
+   void			env_u(t_info *context)
+   {
+   int			i;
+
+   free(context->args[0]);
+   free(context->args[1]);
+   i = 2;
+   while (context->args[i])
+   {
+   context->args[i - 2] = context->args[i];
+   i++;
+   }
+   sh_unsetenv(context);
+   free(context->args[0]);
+   i = 1;
+   while (context->args[i])
+   {
+   context->args[i - 1] = context->args[i];
+   i++;
+   }
+   context->args[i] = 0;
+   }*/
