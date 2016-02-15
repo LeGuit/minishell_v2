@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 10:15:30 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:53:05 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,16 @@ static char		*sh_fetch_in_path(char *path, char *cmd)
 		if ((res = test_path(cursor, cmd, i)))
 			return (res);
 		free(res);
-		tmpath = (ft_strchr(tmpath, ':') + 1);
+		tmpath = (ft_strchr(tmpath, ':'));
+		if(!tmpath)
+			break ;
+		tmpath++;
 	}
-	ft_error_chdir(cmd);
+	ft_error_execv(cmd);
 	return (NULL);
 }
 
-static int		sh_execve(t_info *info)
+static void		sh_execve(t_info *info)
 {
 	int			retexec;
 	char		*path;
@@ -65,9 +68,9 @@ static int		sh_execve(t_info *info)
 	{
 		path = sh_get_in_env("PATH", info->env);
 		path = sh_fetch_in_path(path, info->args[0]);
-		retexec = execve(path, info->args, info->env);
+		execve(path, info->args, info->env);
 	}
-	return (retexec);
+	exit(EXIT_SUCCESS);
 }
 
 int				sh_launch(t_info *info)
@@ -78,11 +81,7 @@ int				sh_launch(t_info *info)
 
 	pid = fork();
 	if (pid == 0)
-	{
-		if (sh_execve(info) == -1)
-			ft_error_execv(info->args[0]);
-		exit(EXIT_FAILURE);
-	}
+		sh_execve(info);
 	else if (pid < 0)
 		ft_error_fork(info);
 	else
