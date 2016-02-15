@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 16:15:43 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:25:47 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,23 @@ char		**sh_getenv(char **environ)
 	return (env);
 }
 
-int		sh_unsetenv(t_info *info)
+int			sh_unsetenv(t_info *info)
 {
-	int	i;
-	char	*unset;
+	int		i;
+	
 
-	if ((unset = sh_get_in_env(info->args[1], info->env)))
+	if (sh_get_in_env(info->args[1], info->env))
 	{
 		i = 0;
-		while (info->env[i] != unset)
+		while (ft_strncmp(info->env[i], info->args[1] , ft_strlen(info->args[1]))
+				&& info->env[i])
 			i++;
-		free(unset);
-		while (info->env[i + 1] != 0)
+		while (info->env[i] != 0)
 		{
 			info->env[i] = info->env[i + 1];
 			i++;
 		}
 	}
 	sh_printenv(info);
-	ft_printf("LOL");
 	return (0);
 }

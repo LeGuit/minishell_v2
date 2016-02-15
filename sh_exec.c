@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 19:19:45 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 10:15:30 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static int		sh_execve(t_info *info)
 	int			retexec;
 	char		*path;
 
-	ft_printf("%s\t%s\t%s\n", info->args[0], info->args[1], info->args[2]);
 	if (info->args[0][0] == '/')
 		retexec = execve(info->args[0], info->args, info->env);
 	else
