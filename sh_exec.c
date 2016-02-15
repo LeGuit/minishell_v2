@@ -53,7 +53,7 @@ static char		*sh_fetch_in_path(char *path, char *cmd)
 			break ;
 		tmpath++;
 	}
-	ft_error_chdir(cmd);
+	ft_error_execv(cmd);
 	return (NULL);
 }
 
