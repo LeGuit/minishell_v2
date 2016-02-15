@@ -6,7 +6,7 @@
 #    By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/10 10:57:07 by gwoodwar          #+#    #+#              #
-#    Updated: 2016/02/15 15:30:58 by gwoodwar         ###   ########.fr        #
+#    Updated: 2016/02/15 17:49:08 by gwoodwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ HEAD =	ft_ls.h
 
 SRCS =	sh_loop.c \
 		sh_error.c \
-		sh_clear.c \
 		sh_path.c \
 		sh_exec.c \
 		sh_builtin1.c \
@@ -28,6 +27,7 @@ SRCS =	sh_loop.c \
 		sh_tools.c \
 		sh_env.c \
 		sh_env_tools.c \
+		sh_env_cases.c \
 		main.c
 
 OBJS =	$(SRCS:.c=.o)

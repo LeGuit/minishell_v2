@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 15:28:46 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 18:14:57 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,18 @@ int				sh_setenv(t_info *info)
 		}
 		i++;
 	}
-	sh_printenv(info);
+	if (!GET(info->sig, ENV_Y))
+		sh_printenv(info);
 	return (EXIT_SUCCESS);
 }
 
 static void		sh_context(t_info *info, t_info *context)
 {
-	int			i;
+//	int			i;
 
 	context->line = ft_strdup(info->line);
-	i = 0;
+	context->args = ft_tabdup(info->args);
+/*	i = 0;
 	while (info->args[i])
 		i++;
 	context->args = (char **)malloc(sizeof(char *) * (i + 1));
@@ -81,6 +83,7 @@ static void		sh_context(t_info *info, t_info *context)
 	while (info->env[++i])
 		context->env[i] = ft_strdup(info->env[i]);
 	context->env[i] = 0;
+*/	context->env = ft_tabdup(info->env);
 	context->status = info->status;
 	context->sig = info->sig;
 	context->cursdir = ft_strdup(info->cursdir);
@@ -90,28 +93,25 @@ static void		sh_context(t_info *info, t_info *context)
 static void		sh_clear_context(t_info *context)
 {
 	free(context->line);
-	free_tab(context->args);
-	free_tab(context->env);
+	if (context->args)
+		ft_tabdel(&context->args);
+	if (context->env)
+		ft_tabdel(&context->env);
 	free(context->cursdir);
 }
 
 int				sh_env(t_info *info)
 {
 	t_info		context;
-	int			i;
 
 	sh_context(info, &context);
-	if (ft_strequ(context.args[1], "-u"))
-	{
-		free(context.args[1]);
-		i = 1;
-		while (context.args[i])
-		{
-			context.args[i] = context.args[i + 1];
-			i++;
-		}
-		sh_unsetenv(&context);
-	}
+//	env_opt(&context);
+//	if (GET(context.opt, OPT_I))
+//		env_i(&context);
+//	else
+		env_set(&context);
+	if (context.args[0])
+		sh_exec(&context);
 	else
 		sh_printenv(&context);
 	sh_clear_context(&context);

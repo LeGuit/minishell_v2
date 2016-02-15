@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 11:27:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 15:26:43 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 15:36:46 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char			*sh_get_in_env(const char *name, char **env)
 	int			i;
 	char		*res;
 	size_t		sizename;
+	extern char	**environ;
 
 	if (env == NULL)
 		env = environ;

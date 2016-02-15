@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 15:32:11 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 18:16:40 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include "libft/includes/libft.h"
 # define PATH_SIZE	4096
 # define SIG_C		(1u << 1)
+# define ENV_Y		(1u << 2)
+# define BIT_A		((1u << 3) - 1)
+# define OPT_I		(1u << 1)
+# define OPT_U		(1u << 2)
+# define OPT_A		((1u << 3) - 1)
 
 typedef struct		s_info
 {
@@ -30,6 +35,7 @@ typedef struct		s_info
 	char			*cursdir;
 	char			**env;
 	int				sig;
+	int				opt;
 }					t_info;
 
 int					sh_loop(t_info *info);
@@ -56,6 +62,10 @@ int					sh_unsetenv(t_info *info);
 int					sh_setenv(t_info *info);
 int					sh_env(t_info *info);
 
+void				env_i(t_info *context, int opt);
+void				env_u(t_info *context);
+void				env_set(t_info *context);
+
 int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
 int					ft_error_execv(char *illdir);
@@ -65,6 +75,4 @@ void				sh_sig_init(t_info *info);
 extern char			*g_builtin_str[];
 extern int			(*g_builtin_fct[])(t_info *info);
 void				init_info(t_info *info);
-
-void				free_tab(char **tab);
 #endif
