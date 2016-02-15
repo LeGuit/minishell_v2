@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 10:16:40 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 12:42:23 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 13:48:43 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char		*g_builtin_str[] =
 	"help",
 	"exit",
 	"pwd",
+	"echo",
 	"printenv",
 	"unsetenv",
 	"setenv",
@@ -30,6 +31,7 @@ int			(*g_builtin_fct[]) (t_info *) =
 	&sh_help,
 	&sh_exit,
 	&sh_pwd,
+	&sh_echo,
 	&sh_printenv,
 	&sh_unsetenv,
 	&sh_setenv

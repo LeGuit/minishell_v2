@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 12:17:30 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 13:48:57 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int					sh_cd(t_info *info);
 int					sh_help(t_info *info);
 int					sh_exit(t_info *info);
 int					sh_pwd(t_info *info);
+int					sh_echo(t_info *info);
 int					sh_printenv(t_info *info);
 int					sh_unsetenv(t_info *info);
 int					sh_setenv(t_info *info);

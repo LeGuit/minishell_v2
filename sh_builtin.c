@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:35:15 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 12:48:43 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 13:49:05 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,31 @@ int				sh_printenv(t_info *info)
 		i++;
 	}
 	return (1);
+}
+
+int				sh_echo(t_info *info)
+{
+	int			i;
+
+	if (ft_strequ(info->args[1], "-n"))
+	{
+		i = 2;
+		while (info->args[i + 1])
+		{
+			ft_printf("%s ", info->args[i]);
+			i++;
+		}
+		ft_printf("%s", info->args[i]);
+	}
+	else
+	{
+		i = 1;
+		while (info->args[i + 1])
+		{
+			ft_printf("%s ", info->args[i]);
+			i++;
+		}
+		ft_printf("%s\n", info->args[i]);
+	}
+	return (EXIT_SUCCESS);
 }
