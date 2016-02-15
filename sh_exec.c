@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 15:23:25 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 15:26:59 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char		*sh_fetch_in_path(char *path, char *cmd)
 			return (res);
 		free(res);
 		tmpath = (ft_strchr(tmpath, ':'));
-		if(!tmpath)
+		if (!tmpath)
 			break ;
 		tmpath++;
 	}

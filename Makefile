@@ -6,7 +6,7 @@
 #    By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/10 10:57:07 by gwoodwar          #+#    #+#              #
-#    Updated: 2016/02/15 14:11:54 by gwoodwar         ###   ########.fr        #
+#    Updated: 2016/02/15 15:30:58 by gwoodwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS =	sh_loop.c \
 		sh_clear.c \
 		sh_path.c \
 		sh_exec.c \
-		sh_builtin.c \
+		sh_builtin1.c \
+		sh_builtin2.c \
 		sh_builtin_tools.c \
 		sh_sig_binding.c \
 		sh_tools.c \

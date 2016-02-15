@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 11:27:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 12:33:32 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 15:26:43 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char			*sh_get_in_env(const char *name, char **env)
 		{
 			if (((ft_strlen(env[i]) - ft_strlen(res)) == sizename
 						&& !ft_strncmp(env[i], name, sizename)))
-				break;
+				break ;
 		}
 		i++;
 	}
@@ -46,7 +46,7 @@ char			**sh_getenv(char **environ)
 	i = 0;
 	while (environ[i])
 		i++;
-	if(!(env = (char **)malloc(sizeof(char *) * (i + 1))))
+	if (!(env = (char **)malloc(sizeof(char *) * (i + 1))))
 		ft_error_malloc();
 	i = 0;
 	while (environ[i])

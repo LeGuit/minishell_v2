@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_path.c                                          :+:      :+:    :+:   */
+/*   sh_builtin2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/10 16:51:02 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 15:27:18 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/15 15:29:37 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/15 15:30:11 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void			sh_get_path(t_info *info)
+int				sh_echo(t_info *info)
 {
 	int			i;
 
-	ft_bzero(info->path, PATH_SIZE);
-	getcwd(info->path, PATH_SIZE - 1);
-	if (ft_strchr(info->path, '/'))
+	if (ft_strequ(info->args[1], "-n"))
 	{
-		i = ft_strlen(info->path);
-		while (i--)
+		i = 2;
+		while (info->args[i + 1])
 		{
-			if (info->path[i] == '/')
-				break ;
+			ft_printf("%s ", info->args[i]);
+			i++;
 		}
-		info->cursdir = &(info->path[i + 1]);
+		ft_printf("%s", info->args[i]);
 	}
 	else
-		info->cursdir = info->path;
+	{
+		i = 1;
+		while (info->args[i + 1])
+		{
+			ft_printf("%s ", info->args[i]);
+			i++;
+		}
+		ft_printf("%s\n", info->args[i]);
+	}
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 15:10:02 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 15:28:46 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int				sh_unsetenv(t_info *info)
 {
 	int			i;
-	
+
 	if (sh_get_in_env(info->args[1], info->env))
 	{
 		i = 0;
-		while (ft_strncmp(info->env[i], info->args[1] , ft_strlen(info->args[1]))
-				&& info->env[i])
+		while (ft_strncmp(info->env[i], info->args[1],
+					ft_strlen(info->args[1])) && info->env[i])
 			i++;
 		while (info->env[i] != 0)
 		{
@@ -60,7 +60,7 @@ int				sh_setenv(t_info *info)
 	return (EXIT_SUCCESS);
 }
 
-static void 	sh_context(t_info *info, t_info *context)
+static void		sh_context(t_info *info, t_info *context)
 {
 	int			i;
 

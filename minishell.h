@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 14:45:17 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 15:32:11 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void				sh_replace_env(char *args, char **env);
 void				sh_add_env(char *args, t_info *info);
 void				sh_tild_to_home(t_info *info);
 
-
 int					sh_nb_builtin(void);
 
 int					sh_cd(t_info *info);
@@ -63,7 +62,6 @@ int					ft_error_execv(char *illdir);
 int					ft_error_chdir(char *arg);
 void				sh_sig_init(t_info *info);
 
-extern char			**environ;
 extern char			*g_builtin_str[];
 extern int			(*g_builtin_fct[])(t_info *info);
 void				init_info(t_info *info);
