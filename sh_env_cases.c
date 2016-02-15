@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:42:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 19:35:47 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/15 19:46:28 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ void			env_set(t_info *context)
 	if (ft_strchr(context->args[1], '='))
 	{
 		SET(context->sig, ENV_Y);
-		ft_printf("arg[0]: %s\targ[1]: %s\targ[2]: %s\n", context->args[0], context->args[1], context->args[2]);
 		sh_setenv(context);
 		tmp = context->args;
 		i = 1;
 		while (ft_strchr(context->args[i], '='))
+		{
 			i++;
-		ft_putstr("lol");
-		ft_printf("i: %d\n", i);
+			if (!context->args[i])
+				break ;
+		}
 		context->args = ft_tabdup(&context->args[i]);
 		ft_tabdel(&tmp);
 	}
