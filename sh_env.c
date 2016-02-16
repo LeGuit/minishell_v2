@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 20:49:05 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 12:14:52 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,26 @@
 int				sh_unsetenv(t_info *info)
 {
 	int			i;
+	int			j;
 
-	if (sh_get_in_env(info->args[1], info->env))
+	if (!info->args[1])
+		return (EXIT_SUCCESS);
+	j = 0;
+	while (info->args[j])
 	{
-		i = 0;
-		while (ft_strncmp(info->env[i], info->args[1],
-					ft_strlen(info->args[1])) && info->env[i])
-			i++;
-		while (info->env[i] != 0)
+		if (sh_get_in_env(info->args[j], info->env))
 		{
-			info->env[i] = info->env[i + 1];
-			i++;
+			i = 0;
+			while (ft_strncmp(info->env[i], info->args[j],
+						ft_strlen(info->args[j])) && info->env[i])
+				i++;
+			while (info->env[i] != 0)
+			{
+				info->env[i] = info->env[i + 1];
+				i++;
+			}
 		}
+		j++;
 	}
 	sh_printenv(info);
 	return (EXIT_SUCCESS);
@@ -35,19 +43,16 @@ int				sh_unsetenv(t_info *info)
 int				sh_setenv(t_info *info)
 {
 	int			i;
-	char		name[128];
 
 	i = 1;
 	while (info->args[i])
 	{
 		if (ft_strchr(info->args[i], '='))
+			sh_setenv_eq(info, i);
+		else if (info->args[i + 1])
 		{
-			ft_bzero(name, 128);
-			ft_strncpy(name, info->args[i], ft_strlen_ch(info->args[i], '='));
-			if ((sh_get_in_env(name, info->env)))
-				sh_replace_env(info->args[i], info->env);
-			else
-				sh_add_env(info->args[i], info);
+			sh_setenv_sp(info, i);
+			i++;
 		}
 		else if (!GET(info->sig, ENV_Y))
 		{

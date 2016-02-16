@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 09:45:46 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 12:09:52 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int					sh_echo(t_info *info);
 int					sh_printenv(t_info *info);
 int					sh_unsetenv(t_info *info);
 int					sh_setenv(t_info *info);
+void				sh_setenv_eq(t_info *info, int i);
+void				sh_setenv_sp(t_info *info, int i);
 int					sh_env(t_info *info);
 int					env_opt(char *line, t_info *context);
 
