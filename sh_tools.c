@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 10:32:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/11 16:10:39 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 11:16:53 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,19 @@ void				sh_tild_to_home(t_info *info)
 	int				i;
 
 	i = 0;
-	while (info->args[i][0] != '~')
-		i++;
-	res = sh_get_in_env("HOME", info->env);
-	if (res)
+	while (info->args[i])
 	{
-		free(info->args[i]);
-		info->args[i] = ft_strdup(res);
+		if (info->args[i][0] == '~'
+				&& (info->args[i][1] == '/' || info->args[i][1] == 0))
+		{
+			res = sh_get_in_env("HOME", info->env);
+			if (res)
+			{
+				res = ft_strjoin(res, info->args[i] + 1);
+				free(info->args[i]);
+				info->args[i] = res;
+			}
+		}
+		i++;
 	}
 }

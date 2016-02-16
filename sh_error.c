@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 11:54:21 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 18:43:13 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 09:36:31 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int					ft_error_chdir(char *illdir)
 	return (EXIT_FAILURE);
 }
 
-int			ft_error_parse(char illopt)
+int					ft_error_parse(char illopt)
 {
 	ft_putstr_fd("sh_env: illegal option -- ", 2);
 	ft_putchar_fd(illopt, 2);

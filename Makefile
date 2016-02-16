@@ -6,12 +6,12 @@
 #    By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/10 10:57:07 by gwoodwar          #+#    #+#              #
-#    Updated: 2016/02/15 17:49:08 by gwoodwar         ###   ########.fr        #
+#    Updated: 2016/02/16 10:50:54 by gwoodwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C =	clang
-FLAGS =	-Wall -Werror -Wextra
+FLAGS =	-Wall -Werror -Wextra -g
 NAME =	minishell
 LIB =	libft/libftprintf.a
 HEAD =	ft_ls.h

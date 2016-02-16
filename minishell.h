@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 18:40:46 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 09:45:46 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define ENV_Y		(1u << 2)
 # define BIT_A		((1u << 3) - 1)
 # define OPT_I		(1u << 1)
-# define OPT_U		(1u << 2)
+# define OPT_MC		(1u << 2)
 # define OPT_A		((1u << 3) - 1)
 
 typedef struct		s_info
@@ -41,7 +41,6 @@ typedef struct		s_info
 int					sh_loop(t_info *info);
 int					sh_get_line(t_info *info);
 void				sh_parse(t_info *info);
-int					sh_multi(t_info *info);
 int					sh_launch(t_info *info);
 int					sh_exec(t_info *info);
 void				sh_get_path(t_info *info);

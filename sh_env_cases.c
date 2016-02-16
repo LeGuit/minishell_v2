@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:42:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 20:45:35 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 09:47:36 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void			env_set(t_info *context)
 	}
 	else
 	{
-	ft_putendl("test");
 		tmp = context->args;
 		context->args = ft_tabdup(&context->args[1]);
 		ft_tabdel(&tmp);
@@ -53,12 +52,10 @@ void			env_set(t_info *context)
 
 static int		invalid_opt(char option, t_info *context)
 {
-	if (!(ft_strchr("iu", option)))
+	if (!(ft_strchr("i", option)))
 		return (1);
 	if (option == 'i')
 		SET(context->opt, OPT_I);
-	else if (option == 'u')
-		SET(context->opt, OPT_U);
 	return (0);
 }
 
@@ -83,26 +80,3 @@ int				env_opt(char *line, t_info *context)
 	}
 	return (1);
 }
-/*
-   void			env_u(t_info *context)
-   {
-   int			i;
-
-   free(context->args[0]);
-   free(context->args[1]);
-   i = 2;
-   while (context->args[i])
-   {
-   context->args[i - 2] = context->args[i];
-   i++;
-   }
-   sh_unsetenv(context);
-   free(context->args[0]);
-   i = 1;
-   while (context->args[i])
-   {
-   context->args[i - 1] = context->args[i];
-   i++;
-   }
-   context->args[i] = 0;
-   }*/

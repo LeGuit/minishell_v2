@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 14:12:22 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 14:26:52 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 10:22:49 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static t_info	*g_info = NULL;
 static void		sh_sig_bind(int sig)
 {
 	(void)sig;
-	ft_printf("\n\033[31m%s\033[39m $> ", g_info->cursdir);
 	SET(g_info->sig, SIG_C);
 }
 
