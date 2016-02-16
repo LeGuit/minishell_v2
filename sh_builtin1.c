@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:30:37 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 12:35:56 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 16:50:03 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				sh_help(t_info *info)
 int				sh_exit(t_info *info)
 {
 	(void)info;
-	ft_putendl("exit");
+	ft_putendl("EXIT SUCCESS");
 	exit(EXIT_SUCCESS);
 }
 

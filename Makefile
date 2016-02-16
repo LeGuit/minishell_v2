@@ -6,12 +6,12 @@
 #    By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/10 10:57:07 by gwoodwar          #+#    #+#              #
-#    Updated: 2016/02/16 12:09:06 by gwoodwar         ###   ########.fr        #
+#    Updated: 2016/02/16 14:37:19 by gwoodwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C =	clang
-FLAGS =	-Wall -Werror -Wextra -g
+FLAGS =	-Wall -Werror -Wextra
 NAME =	minishell
 LIB =	libft/libftprintf.a
 HEAD =	ft_ls.h
@@ -29,6 +29,8 @@ SRCS =	sh_loop.c \
 		sh_env_tools.c \
 		sh_env_cases.c \
 		sh_setenv_tools.c \
+		ft_access.c \
+		sh_path_tools.c \
 		main.c
 
 OBJS =	$(SRCS:.c=.o)

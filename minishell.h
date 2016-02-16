@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 12:09:52 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 16:01:08 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
+# include <limits.h>
 # include "libft/includes/libft.h"
 # define PATH_SIZE	4096
 # define SIG_C		(1u << 1)
@@ -49,6 +50,8 @@ char				**sh_getenv(char **environ);
 void				sh_replace_env(char *args, char **env);
 void				sh_add_env(char *args, t_info *info);
 void				sh_tild_to_home(t_info *info);
+int					ft_access(char *path);
+int					resolve_path(char *arg, char *envpath, char *buf);
 
 int					sh_nb_builtin(void);
 
@@ -69,9 +72,9 @@ void				env_i(t_info *context, int opt);
 void				env_u(t_info *context);
 void				env_set(t_info *context);
 
+void				ft_error(int error, char *cmd);
 int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
-int					ft_error_execv(char *illdir);
 int					ft_error_chdir(char *arg);
 int					ft_error_parse(char illopt);
 void				sh_sig_init(t_info *info);
