@@ -6,7 +6,7 @@
 #    By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/10 10:57:07 by gwoodwar          #+#    #+#              #
-#    Updated: 2016/02/16 14:37:19 by gwoodwar         ###   ########.fr        #
+#    Updated: 2016/02/16 16:57:27 by gwoodwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ HEAD =	ft_ls.h
 
 SRCS =	sh_loop.c \
 		sh_error.c \
+		sh_error_status.c \
 		sh_path.c \
 		sh_exec.c \
 		sh_builtin1.c \

@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:57:01 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 11:08:27 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 16:56:13 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int				sh_loop(t_info *info)
 		{
 			sh_parse(info);
 			info->status = sh_exec(info);
+			ft_error_status(info->status,info->args[0]);
 		}
 		sh_get_path(info);
 		ft_printf("\033[31m%s\033[39m $> ", info->cursdir);
