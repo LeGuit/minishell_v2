@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_unsetenv.c                                 :+:      :+:    :+:   */
+/*   libft_tabsize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <gwoodwar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/16 19:21:36 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 20:16:35 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/16 20:08:38 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/16 20:10:01 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "includes/libft.h"
 
-int				sh_unsetenv(t_info *info)
+size_t				ft_tabsize(char **tab)
 {
-	int			i;
+	size_t			size;
 
-	i = 1;
-	while (info->arg[i])
-	{
-		ft_unsetenv(info->arg[i], info->env);
-		i++;
-	}
-	return (EXIT_SUCCESS);
+	if (!tab)
+		return (0);
+	size = 0;
+	while (tab[size])
+		size++;
+	return (size);
 }

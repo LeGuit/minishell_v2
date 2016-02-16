@@ -6,19 +6,22 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 18:13:17 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 20:16:36 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _MINISHELL_H
 # define _MINISHELL_H
 
+# include "libft/includes/libft.h"
+
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <sys/wait.h>
+
 # include <sys/stat.h>
-# include <limits.h>
-# include "libft/includes/libft.h"
+# include <sys/wait.h>
+
 # define PATH_SIZE	4096
 # define SIG_C		(1u << 1)
 # define ENV_Y		(1u << 2)

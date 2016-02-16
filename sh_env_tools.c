@@ -6,7 +6,7 @@
 /*   By: gwoodwar <gwoodwar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:24:46 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 19:47:47 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 20:16:33 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 int			ft_setenv(char *name, char *value, int overwrite, char **env)
 {
 
-}
-
-int			ft_unsetenv(char *name, char *value, char **env)
-{
-	
 }
 
 char			*ft_getenv(const char *name, char **env)
@@ -67,4 +62,27 @@ int				ft_unsetenv(const char *name, char **env)
 		j++;
 	}
 	return (EXIT_SUCCESS);
+}
+
+int				ft_replaceenv(const char *name, char *env)
+{
+	if (!name || !env)
+		return (EXIT_FAILURE);
+	free(env);
+	env = ft_strdup(name);
+}
+
+int				ft_addenv(const char *newenv, char **env)
+{
+	char		**tmp;
+	size_t		size;
+
+	if (!newenv || !env)
+		return (EXOT_FAILURE);
+	tmp = env;
+	size = ft_tabsize(env) + 1;
+	env = (char **)malloc(sizeof(char *) * (size + 1));
+	ft_tabcpy(env, tmp);
+	env[size] = ft_strdup(newenv);
+	env[size + 1] = 0;
 }

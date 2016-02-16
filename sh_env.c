@@ -6,57 +6,11 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 19:13:54 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 20:16:30 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int				sh_unsetenv(t_info *info)
-{
-	int			i;
-	int			j;
-
-	if (!info->args[1])
-		return (EXIT_SUCCESS);
-	j = 0;
-	while (info->args[j])
-	{
-		if (sh_get_in_env(info->args[j], info->env))
-		{
-			i = 0;
-			while (ft_strncmp(info->env[i], info->args[j],
-						ft_strlen(info->args[j])) && info->env[i])
-				i++;
-			while (info->env[i] != 0)
-			{
-				info->env[i] = info->env[i + 1];
-				i++;
-			}
-		}
-		j++;
-	}
-	return (EXIT_SUCCESS);
-}
-
-int				sh_setenv(t_info *info)
-{
-	int			i;
-
-	i = 1;
-	while (info->args[i])
-	{
-		if (ft_strchr(info->args[i], '='))
-			sh_setenv_eq(info, i);
-		else if (info->args[i + 1])
-		{
-			sh_setenv_sp(info, i);
-			i++;
-		}
-		i++;
-	}
-	return (EXIT_SUCCESS);
-}
 
 static void		sh_context(t_info *info, t_info *context)
 {

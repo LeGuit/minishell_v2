@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_unsetenv.c                                 :+:      :+:    :+:   */
+/*   libft_tabcpy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <gwoodwar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/16 19:21:36 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 20:16:35 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/16 20:11:36 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/16 20:16:34 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "includes/libft.h"
 
-int				sh_unsetenv(t_info *info)
+void				ft_tabcpy(char **dsttab, char **srctab)
 {
-	int			i;
+	int				i;
 
-	i = 1;
-	while (info->arg[i])
+	i = 0;
+	while (srctab[i])
 	{
-		ft_unsetenv(info->arg[i], info->env);
-		i++;
+			dsttab[i] = ft_strdup(srctab[i]);
+			i++;
 	}
-	return (EXIT_SUCCESS);
 }
