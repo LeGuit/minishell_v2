@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 11:56:48 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 12:09:53 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 12:36:45 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ void			sh_setenv_sp(t_info *info, int i)
 
 	ft_bzero(name, 1024);
 	ft_strcpy(name, info->args[i]);
-	ft_strcat(name, "=");
-	if ((sh_get_in_env(name, info->env)))
+	if (sh_get_in_env(name, info->env))
 	{
-		ft_strcat(name, info->args[i + 1]);
+		ft_strcat(name, "=");
+		if (info->args[i + 1])
+			ft_strcat(name, info->args[i + 1]);
 		sh_replace_env(name, info->env);
 	}
 	else
 	{
-		ft_strcat(name, info->args[i + 1]);
+		ft_strcat(name, "=");
+		if (info->args[i + 1])
+			ft_strcat(name, info->args[i + 1]);
 		sh_add_env(name, info);
 	}
 }
