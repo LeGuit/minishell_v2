@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:55:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 16:57:50 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 17:17:50 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int					ft_error_malloc(void);
 int					ft_error_fork(t_info *info);
 int					ft_error_chdir(char *arg);
 int					ft_error_parse(char illopt);
-void				ft_error_status(int status, char *cmd);
+int					ft_error_status(int status, char *cmd);
 void				sh_sig_init(t_info *info);
 
 extern char			*g_builtin_str[];

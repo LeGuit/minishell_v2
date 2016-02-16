@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 16:06:20 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 17:16:28 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ static int		sh_execve(t_info *info)
 	exit(EXIT_FAILURE);
 }
 
-static int		status_checker(int status)
+static int		status_checker(int status, char *cmd)
 {
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
-		return (WTERMSIG(status));
-	if (WIFSTOPPED(status))
-		return (WSTOPSIG(status));
-	return (EXIT_SUCCESS);
+		return (ft_error_status(WTERMSIG(status), cmd));
+	return (EXIT_FAILURE);
 }
 
 int				sh_launch(t_info *info)
@@ -54,7 +52,7 @@ int				sh_launch(t_info *info)
 		if (pid == 0)
 			sh_execve(info);
 		wpid = waitpid(pid, &status, WUNTRACED);
-		return (status_checker(status));
+		return (status_checker(status, info->args[0]));
 	}
 	return (1);
 }

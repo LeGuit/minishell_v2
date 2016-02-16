@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:29:37 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 11:42:58 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 17:21:01 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int				sh_echo(t_info *info)
 
 	if (!info->args[1])
 		ft_putchar('\n');
+	else if (ft_strequ(info->args[1], "-n") && !info->args[2])
+		;
 	else
 	{
 		if (ft_strequ(info->args[1], "-n"))
