@@ -3,98 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   sh_env_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gwoodwar <gwoodwar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/15 11:27:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/15 15:36:46 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/16 19:24:46 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/16 19:47:47 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char			*sh_get_in_env(const char *name, char **env)
+int			ft_setenv(char *name, char *value, int overwrite, char **env)
+{
+
+}
+
+int			ft_unsetenv(char *name, char *value, char **env)
+{
+	
+}
+
+char			*ft_getenv(const char *name, char **env)
 {
 	int			i;
 	char		*res;
 	size_t		sizename;
-	extern char	**environ;
 
-	if (env == NULL)
-		env = environ;
+	if (!name || !env)
+		return (NULL);
 	sizename = ft_strlen(name);
 	i = 0;
 	while (env[i] != 0)
 	{
-		if ((res = ft_strchr(env[i], '=')))
-		{
-			if (((ft_strlen(env[i]) - ft_strlen(res)) == sizename
-						&& !ft_strncmp(env[i], name, sizename)))
+		if (!ft_strncmp(env[i], name, sizename) && env[i][sizename] == '=')
 				break ;
-		}
 		i++;
 	}
 	if (env[i] == 0)
 		return (NULL);
-	res++;
-	return (res);
+	return (env[i] + sizename + 1);
 }
 
-char			**sh_getenv(char **environ)
+int				ft_unsetenv(const char *name, char **env)
 {
 	int			i;
-	char		**env;
+	int			j;
 
-	i = 0;
-	while (environ[i])
-		i++;
-	if (!(env = (char **)malloc(sizeof(char *) * (i + 1))))
-		ft_error_malloc();
-	i = 0;
-	while (environ[i])
+	if (!name || !env)
+		return (EXIT_FAILURE);
+	j = 0;
+	sizename = ft_strlen(name);
+	while (env[j])
 	{
-		if (!(env[i] = ft_strdup(environ[i])))
-			ft_error_malloc();
-		i++;
-	}
-	env[i] = 0;
-	return (env);
-}
-
-void			sh_replace_env(char *args, char **env)
-{
-	size_t		sarg;
-	int			i;
-
-	sarg = ft_strlen_ch(args, '=');
-	i = 0;
-	while (env[i])
-	{
-		if (!ft_strncmp(args, env[i], sarg))
+		if (!ft_strncmp(env[i], name, sizename) && env[i][sizename] == '=')
 		{
-			free(env[i]);
-			env[i] = ft_strdup(args);
+			free(env[j]);
+			i = j;
+			while (env[i])
+			{
+				env[i] = env[i + 1];
+				i++;
+			}
 		}
-		i++;
+		j++;
 	}
-}
-
-void			sh_add_env(char *args, t_info *info)
-{
-	char		**tmp;
-	int			i;
-
-	tmp = info->env;
-	i = 0;
-	while (tmp[i])
-		i++;
-	info->env = (char **)malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (tmp[i])
-	{
-		info->env[i] = tmp[i];
-		i++;
-	}
-	free(tmp);
-	info->env[i] = ft_strdup(args);
-	info->env[i + 1] = 0;
+	return (EXIT_SUCCESS);
 }

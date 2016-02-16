@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 12:23:59 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 19:13:54 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,19 +91,13 @@ int				sh_env(t_info *info)
 		i++;
 	if (GET(context.opt, OPT_I))
 		env_i(&context, i);
-	else if (!context.args[1])
-	{
+	env_set(&context);
+	if (!context.args[0])
 		sh_printenv(&context);
-		return (EXIT_SUCCESS);
-	}
+	else if (ft_strequ(context.args[0], "cd"))
+		;
 	else
-		env_set(&context);
-	if (ft_strequ(context.args[0], "cd"))
-		return (EXIT_SUCCESS);
-	else if (context.args[0])
 		sh_exec(&context);
-	else
-		sh_printenv(&context);
 	sh_clear_context(&context);
 	return (EXIT_SUCCESS);
 }

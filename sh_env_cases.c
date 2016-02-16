@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:42:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 09:47:36 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/16 18:52:33 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,22 @@
 void			env_i(t_info *context, int nbopt)
 {
 	char		**tmp;
+	int			i;
 
 	ft_tabdel(&context->env);
 	tmp = context->args;
-	context->args = ft_tabdup(&context->args[nbopt]);
+	i = nbopt;
+	while (context->args[i])
+		i++;
+	context->args = (char **)malloc(sizeof(char *) * (i + 2));
+	context->args[0] = ft_strdup("env");
+	i = nbopt;
+	while (tmp[i])
+	{
+		context->args[i - nbopt + 1] = tmp[i];
+		i++;
+	}
+	ft_printf("arg[0]: %s\targ[1]: %s\n", context->args[0], context->args[1]);
 	ft_tabdel(&tmp);
 }
 
@@ -27,12 +39,14 @@ void			env_set(t_info *context)
 	int			i;
 	char		**tmp;
 
+	ft_printf("arg[0]: %s\targ[1]: %s\n", context->args[0], context->args[1]);
 	if (ft_strchr(context->args[1], '='))
 	{
 		SET(context->sig, ENV_Y);
 		sh_setenv(context);
+	ft_printf("arg[0] after setenv: %s\targ[1]: %s\n", context->args[0], context->args[1]);
 		tmp = context->args;
-		i = 1;
+		i = 0;
 		while (ft_strchr(context->args[i], '='))
 		{
 			i++;
@@ -48,6 +62,7 @@ void			env_set(t_info *context)
 		context->args = ft_tabdup(&context->args[1]);
 		ft_tabdel(&tmp);
 	}
+	ft_printf("arg[0] after setenv: %s\targ[1]: %s\n", context->args[0], context->args[1]);
 }
 
 static int		invalid_opt(char option, t_info *context)
