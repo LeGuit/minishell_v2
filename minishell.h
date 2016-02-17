@@ -66,9 +66,10 @@ int					sh_echo(t_info *info, char **env, char **args);
 int					sh_printenv(t_info *info, char **env, char **args);
 int					sh_unsetenv(t_info *info, char **env, char **args);
 int					sh_setenv(t_info *info, char **env, char **args);
+int					sh_env(t_info *info, char **env, char **args);
+int					sh_export(t_info *info, char **env, char **args);
 void				sh_setenv_eq(t_info *info, int i);
 void				sh_setenv_sp(t_info *info, int i);
-int					sh_env(t_info *info, char **env);
 int					env_opt(char *line, t_info *context);
 
 void				env_i(t_info *context, int opt);

@@ -12,11 +12,6 @@
 
 #include "minishell.h"
 
-int			ft_setenv(char *name, char *value, int overwrite, char **env)
-{
-
-}
-
 char			*ft_getenv(const char *name, char **env)
 {
 	int			i;

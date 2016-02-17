@@ -16,6 +16,7 @@ int				sh_unsetenv(t_info *info, char **env, char **args)
 {
 	int			i;
 
+	(void)info;
 	i = 0;
 	while (arg[i])
 	{

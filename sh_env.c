@@ -10,24 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int				sh_env(t_info *info)
-{	
-	int			index;
+int				ft_env(t_info *info, char **args)
+{
+	int			index;	
 	char		**context;
 
-	index = 1;
-	while (getopt_env(info->line, info);//need to exit &&index is after all -i can exit cause no malloc ?
-		index++;
+	index = 0;
 	context = ft_tabdup(info->env);
 	if (GET(info->opt, OPT_I)
 		env_i(context);
-	index += env_u(&info->args[index], context);//test -u of nothing or -u with no =
-	while (ft_strchr(info->args[index], '='))
+	index += env_u(&args[index], context);//test -u of nothing or -u with no =
+	while (ft_strchr(args[index], '='))
 	{
-		sh_setenv(info->args[index], context);//care about env null
+		sh_export(info, context,args[index]);//care about env null
 		index++;
 	}
-	sh_exec(&info->args[index]);
+	sh_exec(&args[index], context);
 	ft_tabdel(&context);
 	return (EXIT_FAILURE);
 }
