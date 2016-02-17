@@ -21,8 +21,15 @@ SRCS =	sh_loop.c \
 		sh_error_status.c \
 		sh_path.c \
 		sh_exec.c \
-		sh_builtin1.c \
-		sh_builtin2.c \
+		builtin_cd.c \
+		builtin_echo.c \
+		builtin_env.c \
+		builtin_exit.c \
+		builtin_help.c \
+		builtin_printenv.c \
+		builtin_pwd.c \
+		builtin_setenv.c \
+		builtin_unsetenv.c \
 		sh_builtin_tools.c \
 		sh_sig_binding.c \
 		sh_tools.c \

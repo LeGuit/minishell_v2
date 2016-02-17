@@ -12,28 +12,28 @@
 
 #include "minishell.h"
 
-int				sh_cd(t_info *info)
+int				sh_cd(t_info *info, char **env, char **args)
 {
 	char		*path;
 	char		*oldpath;
 
-	if (info->args[1] == NULL)
+	if (args[0] == NULL)
 	{
-		path = sh_get_in_env("HOME", info->env);
+		path = sh_get_in_env("HOME", env);
 		chdir(path);
 	}
-	else if (ft_strequ(info->args[1], "-"))
+	else if (ft_strequ(args[0], "-"))
 	{
-		path = sh_get_in_env("OLDPWD", info->env);
+		path = sh_get_in_env("OLDPWD", env);
 		chdir(path);
 	}
 	else
 	{
-		if (chdir(info->args[1]) != 0)
-			ft_error_chdir(info->args[1]);
+		if (chdir(args[0]) != 0)
+			ft_error_chdir(args[0]);
 	}
 	oldpath = ft_strjoin("OLDPWD=", info->path);
-	sh_replace_env(oldpath, info->env);
+	sh_replace_env(oldpath, env);
 	free(oldpath);
 	return (1);
 }

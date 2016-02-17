@@ -38,7 +38,7 @@ static int		status_checker(int status, char *cmd)
 	return (EXIT_FAILURE);
 }
 
-int				sh_launch(t_info *info)
+int				sh_launch(t_info *info, char **env)
 {
 	pid_t		pid;
 	pid_t		wpid;

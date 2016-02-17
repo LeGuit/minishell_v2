@@ -25,7 +25,7 @@ char		*g_builtin_str[] =
 	"env"
 };
 
-int			(*g_builtin_fct[]) (t_info *) =
+int			(*g_builtin_fct[]) (t_info *, char **, char **) =
 {
 	&sh_cd,
 	&sh_help,

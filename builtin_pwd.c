@@ -12,11 +12,13 @@
 
 #include "minishell.h"
 
-int				sh_pwd(t_info *info)
+int				sh_pwd(t_info *info, char **env, char **args)
 {
 	char		buf[4096];
 
 	(void)info;
+	(void)env;
+	(void)args;
 	ft_bzero(buf, 4096);
 	getcwd(buf, 4096);
 	ft_putendl(buf);

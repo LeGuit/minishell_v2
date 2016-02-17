@@ -12,14 +12,14 @@
 
 #include "minishell.h"
 
-int				sh_unsetenv(t_info *info)
+int				sh_unsetenv(t_info *info, char **env, char **args)
 {
 	int			i;
 
-	i = 1;
-	while (info->arg[i])
+	i = 0;
+	while (arg[i])
 	{
-		ft_unsetenv(info->arg[i], info->env);
+		ft_unsetenv(arg[i], env);
 		i++;
 	}
 	return (EXIT_SUCCESS);

@@ -12,14 +12,16 @@
 
 #include "minishell.h"
 
-int				sh_printenv(t_info *info)
+int				sh_printenv(t_info *info, char **env, char **args)
 {
 	int			i;
 
+	(void)info;
+	(void)args;
 	i = 0;
-	while (info->env[i])
+	while (env[i])
 	{
-		ft_putendl(info->env[i]);
+		ft_putendl(env[i]);
 		i++;
 	}
 	return (1);

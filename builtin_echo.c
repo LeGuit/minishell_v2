@@ -25,27 +25,28 @@ static void		sh_echo_n(t_info *info)
 	ft_printf("%s", info->args[i]);
 }
 
-int				sh_echo(t_info *info)
+int				sh_echo(t_info *info, char **env, char **args)
 {
 	int			i;
 
-	if (!info->args[1])
+	(void)env;
+	if (!args[0])
 		ft_putchar('\n');
-	else if (ft_strequ(info->args[1], "-n") && !info->args[2])
+	else if (ft_strequ(args[0], "-n") && !args[1])
 		;
 	else
 	{
-		if (ft_strequ(info->args[1], "-n"))
+		if (ft_strequ(args[0], "-n"))
 			sh_echo_n(info);
 		else
 		{
-			i = 1;
-			while (info->args[i + 1])
+			i = 0;
+			while (args[i + 1])
 			{
-				ft_printf("%s ", info->args[i]);
+				ft_printf("%s ", args[i]);
 				i++;
 			}
-			ft_printf("%s\n", info->args[i]);
+			ft_printf("%s\n", args[i]);
 		}
 	}
 	return (EXIT_SUCCESS);

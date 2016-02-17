@@ -65,7 +65,7 @@ void			sh_parse(t_info *info)
 	sh_tild_to_home(info);
 }
 
-int				sh_exec(t_info *info)
+int				sh_exec(t_info *info, char **env)
 {
 	int			i;
 
@@ -75,10 +75,10 @@ int				sh_exec(t_info *info)
 	while (i < sh_nb_builtin())
 	{
 		if (ft_strcmp(info->args[0], g_builtin_str[i]) == 0)
-			return ((*g_builtin_fct[i])(info));
+			return ((*g_builtin_fct[i])(info, env, info->args[1]));
 		i++;
 	}
-	return (sh_launch(info));
+	return (sh_launch(info, env, info->args[1]));
 }
 
 int				sh_loop(t_info *info)
@@ -96,7 +96,7 @@ int				sh_loop(t_info *info)
 		if (!(multi = sh_multi(info)))
 		{
 			sh_parse(info);
-			info->status = sh_exec(info);
+			info->status = sh_exec(info, info->env);
 		}
 		sh_get_path(info);
 		ft_printf("\033[31m%s\033[39m $> ", info->cursdir);

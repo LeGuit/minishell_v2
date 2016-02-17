@@ -45,8 +45,8 @@ typedef struct		s_info
 int					sh_loop(t_info *info);
 int					sh_get_line(t_info *info);
 void				sh_parse(t_info *info);
-int					sh_launch(t_info *info);
-int					sh_exec(t_info *info);
+int					sh_launch(t_info *info, char **env);
+int					sh_exec(t_info *info, char **env);
 void				sh_get_path(t_info *info);
 char				*sh_get_in_env(const char *name, char **env);
 char				**sh_getenv(char **environ);
@@ -58,17 +58,17 @@ int					resolve_path(char *arg, char *envpath, char *buf);
 
 int					sh_nb_builtin(void);
 
-int					sh_cd(t_info *info);
-int					sh_help(t_info *info);
-int					sh_exit(t_info *info);
-int					sh_pwd(t_info *info);
-int					sh_echo(t_info *info);
-int					sh_printenv(t_info *info);
-int					sh_unsetenv(t_info *info);
-int					sh_setenv(t_info *info);
+int					sh_cd(t_info *info, char **env, char **args);
+int					sh_help(t_info *info, char **env, char **args);
+int					sh_exit(t_info *info, char **env, char **args);
+int					sh_pwd(t_info *info, char **env, char **args);
+int					sh_echo(t_info *info, char **env, char **args);
+int					sh_printenv(t_info *info, char **env, char **args);
+int					sh_unsetenv(t_info *info, char **env, char **args);
+int					sh_setenv(t_info *info, char **env, char **args);
 void				sh_setenv_eq(t_info *info, int i);
 void				sh_setenv_sp(t_info *info, int i);
-int					sh_env(t_info *info);
+int					sh_env(t_info *info, char **env);
 int					env_opt(char *line, t_info *context);
 
 void				env_i(t_info *context, int opt);

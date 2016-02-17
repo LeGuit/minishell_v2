@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int				sh_setenv(t_info *info)
+int				sh_setenv(t_info *info, char **env, char **args)
 {
 // 	int			i;
 

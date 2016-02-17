@@ -12,9 +12,11 @@
 
 #include "minishell.h"
 
-int				sh_exit(t_info *info)
+int				sh_exit(t_info *info, char **env, char **args)
 {
 	(void)info;
+	(void)env;
+	(void)args;
 	ft_putendl("EXIT SUCCESS");
 	exit(EXIT_SUCCESS);
 }

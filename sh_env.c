@@ -1,57 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_env.c                                           :+:      :+:    :+:   */
+/*   sh_env_cases.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/11 13:27:17 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 20:16:30 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/15 15:42:57 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/16 18:52:33 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-static void		sh_context(t_info *info, t_info *context)
-{
-	context->line = ft_strdup(info->line);
-	context->args = ft_tabdup(info->args);
-	context->env = ft_tabdup(info->env);
-	context->status = info->status;
-	context->sig = info->sig;
-	context->cursdir = ft_strdup(info->cursdir);
-	ft_strcpy(context->path, info->path);
-}
-
-static void		sh_clear_context(t_info *context)
-{
-	free(context->line);
-	if (context->args)
-		ft_tabdel(&context->args);
-	if (context->env)
-		ft_tabdel(&context->env);
-	free(context->cursdir);
-}
-
 int				sh_env(t_info *info)
+{	
+	int			index;
+	char		**context;
+
+	index = 1;
+	while (getopt_env(info->line, info);//need to exit &&index is after all -i can exit cause no malloc ?
+		index++;
+	context = ft_tabdup(info->env);
+	if (GET(info->opt, OPT_I)
+		env_i(context);
+	index += env_u(&info->args[index], context);//test -u of nothing or -u with no =
+	while (ft_strchr(info->args[index], '='))
+	{
+		sh_setenv(info->args[index], context);//care about env null
+		index++;
+	}
+	sh_exec(&info->args[index]);
+	ft_tabdel(&context);
+	return (EXIT_FAILURE);
+}
+
+void			env_i(char **env)
+{
+	char		**tmp;
+	int			index;
+
+	ft_tabdel(&env);
+	env = (char **)malloc(sizeof(char *) * 1);
+	env[0] = ft_strdup("\0");
+}
+
+void			env_u(char **args, char **env)
 {
 	int			i;
-	t_info		context;
+	int			index;
 
-	sh_context(info, &context);
-	UNSET(context.opt, OPT_A);
-	i = 1;
-	while (env_opt(context.args[i], &context))
+	i = 0;
+	while (ft_strequ(args[i], "-u"))
+	{
 		i++;
-	if (GET(context.opt, OPT_I))
-		env_i(&context, i);
-	env_set(&context);
-	if (!context.args[0])
-		sh_printenv(&context);
-	else if (ft_strequ(context.args[0], "cd"))
-		;
-	else
-		sh_exec(&context);
-	sh_clear_context(&context);
-	return (EXIT_SUCCESS);
+		sh_unsetenv(args[i], env);
+		i++;
+		index +=2;
+	}
+	return (index);
 }
