@@ -12,11 +12,11 @@
 
 #include "minishell.h"
 
-void			env_i(char **env)
+void			env_i(char ***env)
 {
-	ft_tabdel(&env);
-	env = (char **)malloc(sizeof(char *) * 1);
-	env[0] = ft_strdup("\0");
+	ft_tabdel(env);
+	*env = (char **)malloc(sizeof(char *) * 1);
+	*env[0] = 0;
 }
 
 int				env_u(char **args, char **env)
@@ -24,6 +24,8 @@ int				env_u(char **args, char **env)
 	int			i;
 	int			index;
 
+	if (!args)
+		return (0);
 	i = 0;
 	index = 0;
 	while (ft_strequ(args[i], "-u"))
@@ -36,22 +38,45 @@ int				env_u(char **args, char **env)
 	return (index);
 }
 
+static void		ft_getcontext(t_info *info, t_info *context)
+{
+	context->line = ft_strdup(info->line);
+	context->args = ft_tabdup(info->args);
+	context->env = ft_tabdup(info->env);
+	context->status = info->status;
+	context->sig = info->sig;
+	context->cursdir = ft_strdup(info->cursdir);
+	ft_strcpy(context->path, info->path);
+}
+
+static void		sh_clear_context(t_info *context)
+{
+	free(context->line);
+	if (context->args)
+		ft_tabdel(&context->args);
+	if (context->env)
+		ft_tabdel(&context->env);
+	free(context->cursdir);
+}
+
 int				ft_env(t_info *info, char **args)
 {
 	int			index;	
-	char		**context;
+	t_info		context;
 
+ft_printf("ENV >> argument[0]: %s\tcmd: %s\n", args[0], info->args[0]);
 	index = 0;
-	context = ft_tabdup(info->env);
+	ft_getcontext(info, &context);
 	if (GET(info->opt, OPT_I))
-		env_i(context);
-	index += env_u(&args[index], context);//test -u of nothing or -u with no =
-	while (ft_strchr(args[index], '='))
+		env_i(&context.env);
+	index += env_u(&args[index], context.env);//test -u of nothing or -u with no =
+	while (args[index] && ft_strchr(args[index], '='))
 	{
-		sh_export(info, context, &args[index]);//care about env null
+		sh_export(&context, context.env, &args[index]);//care about env null
 		index++;
 	}
-	sh_launch(info, context, &args[index]);
-	ft_tabdel(&context);
+	ft_printf("index: %d\n",index);
+	sh_launch(&context, context.env, &args[index]);
+	sh_clear_context(&context);
 	return (EXIT_FAILURE);
 }

@@ -17,14 +17,16 @@ int				sh_export(t_info *info, char **env, char **args)
 	char		name[1024];
 	int			i;
 
-	(void)info;
+	(void)env;
 	i = 0;
 	while (args[i])
 	{
+		if (!ft_strchr(args[i], '='))
+			break ;
 		ft_bzero(name, 1024);
 		ft_strcpy(name, args[i]);
-		if (ft_replaceenv(name, env))
-			ft_addenv(args[i], &env);
+		if (ft_replaceenv(name, info->env))
+			ft_addenv(args[i], &info->env);
 		i++;
 	}
 	return (EXIT_SUCCESS);

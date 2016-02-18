@@ -74,7 +74,7 @@ int					ft_unsetenv(const char *name, char **env);
 int					ft_replaceenv(const char *name, char **env);
 int					ft_addenv(const char *newenv, char ***env);
 char				*ft_getenv(const char *name, char **env);
-void				env_i(char **env);
+void				env_i(char ***env);
 int					env_u(char **args, char **env);
 void				env_set(t_info *context);
 

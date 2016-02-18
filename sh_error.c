@@ -54,7 +54,8 @@ int					ft_error_parse(char illopt)
 void				ft_error(int error, char *cmd)
 {
 	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(cmd, 2);
+	if (error != 42)
+		ft_putstr_fd(cmd, 2);
 	if (error == ENAMETOOLONG)
 		ft_putstr_fd(": File name too long\n", 2);
 	else if (error == ENOENT)
@@ -63,4 +64,10 @@ void				ft_error(int error, char *cmd)
 		ft_putstr_fd(": Is a directory\n", 2);
 	else if (error == EACCES)
 		ft_putstr_fd(": Permission denied\n", 2);
+	else if (error == 42)
+	{
+		ft_putstr_fd("command not found: ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putchar_fd('\n', 2);
+	}
 }

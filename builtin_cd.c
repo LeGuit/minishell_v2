@@ -35,7 +35,6 @@ int				sh_cd(t_info *info, char **env, char **args)
 	oldpath = (char **)malloc(sizeof(char *) * 2);
 	oldpath[0] = ft_strjoin("OLDPWD=", info->path);
 	oldpath[1] = 0;
-	ft_printf("CD >> argument[0]: %s\tcmd: %s\toldpath: %s\n", args[0], info->args[0], oldpath[0]);
 	sh_export(info, env, oldpath);
 	ft_tabdel(&oldpath);
 	return (1);

@@ -18,13 +18,19 @@ int				sh_env(t_info *info, char **env, char **args)
 	int			test;
 
 	(void)env;
-	index = 1;
-	while ((test = env_opt(info->line, info)) > 0)//need to exit &&index is after all -i can exit cause no malloc ?
-		index++;
-	if (test == -1)
-		return (EXIT_FAILURE);
+	if (!args[0])
+		sh_printenv(info, env, args);
 	else
-		ft_env(info, &args[index]);
+	{
+		index = 0;
+		while ((test = env_opt(args[index], info)) > 0)
+			index++;
+		ft_printf("BUILTENV >> argument[index]: %s\tcmd: %s\ttest: %d\tindex: %d\n", args[index], info->args[0], test, index);
+		if (test == -1)
+			return (EXIT_FAILURE);
+		else
+			ft_env(info, &args[index]);
+	}
 	return (EXIT_FAILURE);
 
 }
