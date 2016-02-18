@@ -42,15 +42,19 @@ int				ft_unsetenv(const char *name, char **env)
 		return (EXIT_FAILURE);
 	j = 0;
 	sizename = ft_strlen(name);
+		ft_printf("FT_UNSET>> name: %s\t env[0]: %s\tsizename: %d\n", name, env[0], sizename);
 	while (env[j])
 	{
-		if (!ft_strncmp(env[i], name, sizename) && env[i][sizename] == '=')
+		ft_printf("env[%d]: %s\n", j, env[j]);
+		if (!ft_strncmp(env[j], name, sizename) && env[i][sizename] == '=')
 		{
+			ft_putstr("TEST");
 			free(env[j]);
 			i = j;
 			while (env[i])
 			{
 				env[i] = env[i + 1];
+				ft_printf("env[%d]: %s\tenv[%d]: %s\n", i, env[i], i + 1, env[i+1]);
 				i++;
 			}
 		}

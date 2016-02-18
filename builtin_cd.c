@@ -15,12 +15,11 @@
 int				sh_cd(t_info *info, char **env, char **args)
 {
 	char		*path;
-	char		*oldpath;
+	char		**oldpath;
 
 	if (args[0] == NULL)
 	{
 		path = ft_getenv("HOME", env);
-		ft_printf("path: %s\n", path);
 		chdir(path);
 	}
 	else if (ft_strequ(args[0], "-"))
@@ -33,8 +32,11 @@ int				sh_cd(t_info *info, char **env, char **args)
 		if (chdir(args[0]) != 0)
 			ft_error_chdir(args[0]);
 	}
-	oldpath = ft_strjoin("OLDPWD=", info->path);
-	sh_export(info, &oldpath, env);
-	free(oldpath);
+	oldpath = (char **)malloc(sizeof(char *) * 2);
+	oldpath[0] = ft_strjoin("OLDPWD=", info->path);
+	oldpath[1] = 0;
+	ft_printf("CD >> argument[0]: %s\tcmd: %s\toldpath: %s\n", args[0], info->args[0], oldpath[0]);
+	sh_export(info, env, oldpath);
+	ft_tabdel(&oldpath);
 	return (1);
 }
