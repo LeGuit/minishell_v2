@@ -20,6 +20,7 @@ int				sh_cd(t_info *info, char **env, char **args)
 	if (args[0] == NULL)
 	{
 		path = ft_getenv("HOME", env);
+		ft_printf("path: %s\n", path);
 		chdir(path);
 	}
 	else if (ft_strequ(args[0], "-"))

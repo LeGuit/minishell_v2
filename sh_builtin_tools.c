@@ -22,7 +22,8 @@ char		*g_builtin_str[] =
 	"printenv",
 	"unsetenv",
 	"setenv",
-	"env"
+	"env",
+	"export"
 };
 
 int			(*g_builtin_fct[]) (t_info *, char **, char **) =
@@ -35,7 +36,8 @@ int			(*g_builtin_fct[]) (t_info *, char **, char **) =
 	&sh_printenv,
 	&sh_unsetenv,
 	&sh_setenv,
-	&sh_env
+	&sh_env,
+	&sh_export
 };
 
 int			sh_nb_builtin(void)
