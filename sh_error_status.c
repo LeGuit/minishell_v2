@@ -20,7 +20,7 @@ int				ft_error_status(int signal, char *cmd)
 	else if (signal == SIGBUS)
 		ft_putstr_fd("[1] bus error  ", 2);
 	else
-		ft_putstr_fd("[1] precess terminated due to receipt of signal", 2);
+		ft_putstr_fd("[1] process terminated due to receipt of signal", 2);
 	ft_putendl_fd(cmd, 2);
 	return (signal);
 }
