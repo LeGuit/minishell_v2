@@ -21,6 +21,7 @@ static int		sh_execve(t_info *info, char **env, char **args)
 	int			error;
 
 	(void)info;
+	(void)args;
 	ft_strcpy(defpath, "/bin:/usr/bin");
 	if (!(envpath = ft_getenv("PATH", env)))
 		envpath = defpath;
