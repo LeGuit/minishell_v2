@@ -64,19 +64,20 @@ int				ft_env(t_info *info, char **args)
 	int			index;	
 	t_info		context;
 
-ft_printf("ENV >> argument[0]: %s\tcmd: %s\n", args[0], info->args[0]);
 	index = 0;
 	ft_getcontext(info, &context);
 	if (GET(info->opt, OPT_I))
 		env_i(&context.env);
-	index += env_u(&args[index], context.env);//test -u of nothing or -u with no =
+	index += env_u(&args[index], context.env);
 	while (args[index] && ft_strchr(args[index], '='))
 	{
 		sh_export(&context, context.env, &args[index]);//care about env null
 		index++;
 	}
-	ft_printf("index: %d\n",index);
-	sh_launch(&context, context.env, &args[index]);
+	ft_tabdel(&context.args);
+	context.args = ft_tabdup(&args[index]);
+	if (args[index])
+		sh_launch(&context, context.env, &args[index]);
 	sh_clear_context(&context);
 	return (EXIT_FAILURE);
 }
