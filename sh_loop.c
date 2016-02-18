@@ -72,7 +72,6 @@ int				sh_exec(t_info *info, char **env, char **args)
 	if (info->args[0] == NULL)
 		return (1);
 	i = 0;
-	ft_printf("argument[0]: %s\tcmd: %s\n", args[0], info->args[0]);
 	while (i < sh_nb_builtin())
 	{
 		if (ft_strcmp(info->args[0], g_builtin_str[i]) == 0)

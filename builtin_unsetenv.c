@@ -20,7 +20,6 @@ int				sh_unsetenv(t_info *info, char **env, char **args)
 	i = 0;
 	while (args[i])
 	{
-		ft_printf("UNSET >> arg[%d]: %s\n", i, args[i]);
 		ft_unsetenv(args[i], env);
 		i++;
 	}

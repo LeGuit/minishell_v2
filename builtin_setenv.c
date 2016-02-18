@@ -44,7 +44,6 @@ int				sh_setenv(t_info *info, char **env, char **args)
 		ft_strcat(name, "=");
 		if (args[1])
 			ft_strcat(name, args[1]);
-		ft_printf("SETENV >> name: %s\n", name);
 		if (ft_replaceenv(name, info->env))
 			ft_addenv(name, &info->env);
 	}

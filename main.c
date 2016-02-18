@@ -18,13 +18,19 @@ static char		**ft_envcpy(char **environ)
 	char		**env;
 	int			i;
 
+
 	sizetab = ft_tabsize(environ);
 	env = (char **)malloc(sizeof(char *) * (sizetab + 1));
-	i = 0;
-	while (environ[i])
+	if (!sizetab)
+		env[0] = 0;
+	else
 	{
-		env[i] = ft_strdup(environ[i]);
-		i++;
+		i = 0;
+		while (environ[i])
+		{
+			env[i] = ft_strdup(environ[i]);
+			i++;
+		}
 	}
 	return (env);
 }
@@ -38,6 +44,6 @@ int				main(void)
 	info.env = ft_envcpy(environ);
 	sh_sig_init(&info);
 	sh_loop(&info);
-	ft_putendl("exit");
+	ft_putendl("EXIT SUCCESS");
 	return (EXIT_SUCCESS);
 }

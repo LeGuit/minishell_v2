@@ -93,19 +93,15 @@ int				ft_addenv(const char *newenv, char ***env)
 		return (EXIT_FAILURE);
 	tmp = *env;
 	size = ft_tabsize(*env);
-	ft_printf("ADDENV >> tabsize: %d\t newenv: %s\n", size, newenv);
 	*env = (char **)malloc(sizeof(char *) * (size + 1));
 	i = 0;
 	while (tmp[i])
 	{
 		(*env)[i] = tmp[i];
-		ft_printf("env[%d]: %s\n", i, (*env)[i]);
 		i++;
 	}
 	(*env)[size] = ft_strdup(newenv);
-	ft_printf("env[%d]: %s\n", size, (*env)[size]);
 	(*env)[size + 1] = 0;
-	ft_printf("env[%d]: %s\n", size + 1, (*env)[size + 1]);
 	free(tmp);
 	return (EXIT_SUCCESS);
 }

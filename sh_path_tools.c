@@ -31,12 +31,13 @@ static int		fetch_path(char *arg, char *envpath, char *buf)
 	{
 		ft_bzero(buf, PATH_MAX);
 		i = 0;
-		while (tmpath[i] != ':')
+		while (tmpath[i] != ':' && tmpath[i])
 			i++;
 		if (i + ft_strlen(arg) > PATH_MAX - 1)
 			return (ENAMETOOLONG);
 		ft_strncpy(buf, tmpath, i);
-		ft_strcat(buf, "/");
+		if (tmpath[i] != '/')
+			ft_strcat(buf, "/");
 		ft_strcat(buf, arg);
 		if (!ft_access(buf))
 			break ;
