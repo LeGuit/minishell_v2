@@ -31,6 +31,8 @@ int				env_opt(char *line, t_info *info)
 		return (0);
 	if (ft_strequ(line, "--"))
 		return (0);
+	if (ft_strequ(line, "-u"))
+		return (0);
 	if (line[0] == '-' && line[1] == '\0')
 		return (0);
 	i = 1;
