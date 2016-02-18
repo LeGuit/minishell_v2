@@ -30,7 +30,7 @@ void				sh_tild_to_home(t_info *info)
 		if (info->args[i][0] == '~'
 				&& (info->args[i][1] == '/' || info->args[i][1] == 0))
 		{
-			res = sh_get_in_env("HOME", info->env);
+			res = ft_getenv("HOME", info->env);
 			if (res)
 			{
 				res = ft_strjoin(res, info->args[i] + 1);

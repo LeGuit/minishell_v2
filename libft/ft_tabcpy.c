@@ -22,4 +22,5 @@ void				ft_tabcpy(char **dsttab, char **srctab)
 			dsttab[i] = ft_strdup(srctab[i]);
 			i++;
 	}
+	dsttab[i] = 0;
 }

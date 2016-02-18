@@ -45,13 +45,10 @@ typedef struct		s_info
 int					sh_loop(t_info *info);
 int					sh_get_line(t_info *info);
 void				sh_parse(t_info *info);
-int					sh_launch(t_info *info, char **env);
-int					sh_exec(t_info *info, char **env);
+int					sh_launch(t_info *info, char **env, char **args);
+int					sh_exec(t_info *info, char **env, char **args);
 void				sh_get_path(t_info *info);
-char				*sh_get_in_env(const char *name, char **env);
 char				**sh_getenv(char **environ);
-void				sh_replace_env(char *args, char **env);
-void				sh_add_env(char *args, t_info *info);
 void				sh_tild_to_home(t_info *info);
 int					ft_access(char *path);
 int					resolve_path(char *arg, char *envpath, char *buf);
@@ -72,8 +69,14 @@ void				sh_setenv_eq(t_info *info, int i);
 void				sh_setenv_sp(t_info *info, int i);
 int					env_opt(char *line, t_info *context);
 
-void				env_i(t_info *context, int opt);
-void				env_u(t_info *context);
+int					ft_env(t_info *info, char **args);
+int					ft_unsetenv(const char *name, char **env);
+int					ft_replaceenv(const char *name, char *env);
+int					ft_addenv(const char *newenv, char **env);
+char				*ft_getenv(const char *name, char **env);
+
+void				env_i(char **env);
+int					env_u(char **args, char **env);
 void				env_set(t_info *context);
 
 void				ft_error(int error, char *cmd);
@@ -85,6 +88,6 @@ int					ft_error_status(int status, char *cmd);
 void				sh_sig_init(t_info *info);
 
 extern char			*g_builtin_str[];
-extern int			(*g_builtin_fct[])(t_info *info);
+extern int			(*g_builtin_fct[])(t_info *info, char **env, char **args);
 void				init_info(t_info *info);
 #endif

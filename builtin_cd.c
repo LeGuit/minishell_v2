@@ -19,12 +19,12 @@ int				sh_cd(t_info *info, char **env, char **args)
 
 	if (args[0] == NULL)
 	{
-		path = sh_get_in_env("HOME", env);
+		path = ft_getenv("HOME", env);
 		chdir(path);
 	}
 	else if (ft_strequ(args[0], "-"))
 	{
-		path = sh_get_in_env("OLDPWD", env);
+		path = ft_getenv("OLDPWD", env);
 		chdir(path);
 	}
 	else
@@ -33,7 +33,7 @@ int				sh_cd(t_info *info, char **env, char **args)
 			ft_error_chdir(args[0]);
 	}
 	oldpath = ft_strjoin("OLDPWD=", info->path);
-	sh_replace_env(oldpath, env);
+	sh_export(info, &oldpath, env);
 	free(oldpath);
 	return (1);
 }

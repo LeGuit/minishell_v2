@@ -12,13 +12,24 @@
 
 #include "minishell.h"
 
+static char		**ft_envcpy(char **environ)
+{
+	size_t		sizetab;
+	char		**env;
+
+	sizetab = ft_tabsize(environ);
+	env = (char **)malloc(sizeof(char *) * (sizetab + 1));
+	ft_tabcpy(env, environ);
+	return (env);
+}
+
 int				main(void)
 {
 	t_info		info;
 	extern char	**environ;
 
 	init_info(&info);
-	info.env = sh_getenv(environ);
+	info.env = ft_envcpy(environ);
 	sh_sig_init(&info);
 	sh_loop(&info);
 	ft_putendl("exit");

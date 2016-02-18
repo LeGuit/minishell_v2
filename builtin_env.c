@@ -17,11 +17,12 @@ int				sh_env(t_info *info, char **env, char **args)
 	int			index;
 	int			test;
 
+	(void)env;
 	index = 1;
-	while ((test = getopt_env(info->line, info)) > 0)//need to exit &&index is after all -i can exit cause no malloc ?
+	while ((test = env_opt(info->line, info)) > 0)//need to exit &&index is after all -i can exit cause no malloc ?
 		index++;
 	if (test == -1)
-		ft_error_parse(char illopt);
+		return (EXIT_FAILURE);
 	else
 		ft_env(info, &args[index]);
 	return (EXIT_FAILURE);

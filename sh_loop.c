@@ -17,7 +17,7 @@ static void		sh_mult_exec(int nbcmd, t_info *info)
 	while (nbcmd != 0)
 	{
 		sh_parse(info);
-		info->status = sh_exec(info);
+		info->status = sh_exec(info, info->env, &info->args[1]);
 		info->line = ft_strchr(info->line, '\0') + 1;
 		nbcmd--;
 	}
@@ -65,20 +65,21 @@ void			sh_parse(t_info *info)
 	sh_tild_to_home(info);
 }
 
-int				sh_exec(t_info *info, char **env)
+int				sh_exec(t_info *info, char **env, char **args)
 {
 	int			i;
 
 	if (info->args[0] == NULL)
 		return (1);
 	i = 0;
+	ft_printf("argument[0]: %s\tcmd: %s\n", args[0], info->args[0]);
 	while (i < sh_nb_builtin())
 	{
 		if (ft_strcmp(info->args[0], g_builtin_str[i]) == 0)
-			return ((*g_builtin_fct[i])(info, env, info->args[1]));
+			return ((*g_builtin_fct[i])(info, env, &args[0]));
 		i++;
 	}
-	return (sh_launch(info, env, info->args[1]));
+	return (sh_launch(info, env, &args[0]));
 }
 
 int				sh_loop(t_info *info)
@@ -96,7 +97,8 @@ int				sh_loop(t_info *info)
 		if (!(multi = sh_multi(info)))
 		{
 			sh_parse(info);
-			info->status = sh_exec(info, info->env);
+			ft_printf("arg[0]: %s\n", info->args[0]);
+			info->status = sh_exec(info, info->env, &info->args[1]);
 		}
 		sh_get_path(info);
 		ft_printf("\033[31m%s\033[39m $> ", info->cursdir);

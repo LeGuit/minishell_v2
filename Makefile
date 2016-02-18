@@ -30,15 +30,15 @@ SRCS =	sh_loop.c \
 		builtin_pwd.c \
 		builtin_setenv.c \
 		builtin_unsetenv.c \
+		builtin_export.c \
 		sh_builtin_tools.c \
 		sh_sig_binding.c \
 		sh_tools.c \
 		sh_env.c \
 		sh_env_tools.c \
-		sh_env_cases.c \
-		sh_setenv_tools.c \
 		ft_access.c \
 		sh_path_tools.c \
+		option.c \
 		main.c
 
 OBJS =	$(SRCS:.c=.o)
