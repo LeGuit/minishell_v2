@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 15:42:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 18:52:33 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/18 17:22:45 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				env_u(char **args, char **env)
 		i++;
 		ft_unsetenv(args[i], env);
 		i++;
-		index +=2;
+		index += 2;
 	}
 	return (index);
 }
@@ -61,7 +61,7 @@ static void		sh_clear_context(t_info *context)
 
 int				ft_env(t_info *info, char **args)
 {
-	int			index;	
+	int			index;
 	t_info		context;
 
 	index = 0;
@@ -71,7 +71,7 @@ int				ft_env(t_info *info, char **args)
 	index += env_u(&args[index], context.env);
 	while (args[index] && ft_strchr(args[index], '='))
 	{
-		sh_export(&context, context.env, &args[index]);//care about env null
+		sh_export(&context, context.env, &args[index]);
 		index++;
 	}
 	ft_tabdel(&context.args);

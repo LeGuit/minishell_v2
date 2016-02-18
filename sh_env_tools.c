@@ -6,7 +6,7 @@
 /*   By: gwoodwar <gwoodwar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:24:46 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 20:16:33 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/18 17:23:57 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char			*ft_getenv(const char *name, char **env)
 	while (env[i] != 0)
 	{
 		if (!ft_strncmp(env[i], name, sizename) && env[i][sizename] == '=')
-				break ;
+			break ;
 		i++;
 	}
 	if (env[i] == 0)
@@ -75,7 +75,7 @@ int				ft_replaceenv(const char *name, char **env)
 			free(env[i]);
 			env[i] = ft_strdup(name);
 			break ;
-		}	
+		}
 		i++;
 	}
 	if (env[i])
