@@ -97,7 +97,6 @@ int				sh_loop(t_info *info)
 		if (!(multi = sh_multi(info)))
 		{
 			sh_parse(info);
-			ft_printf("arg[0]: %s\n", info->args[0]);
 			info->status = sh_exec(info, info->env, &info->args[1]);
 		}
 		sh_get_path(info);
