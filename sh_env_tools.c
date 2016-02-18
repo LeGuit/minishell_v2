@@ -93,7 +93,8 @@ int				ft_addenv(const char *newenv, char ***env)
 		return (EXIT_FAILURE);
 	tmp = *env;
 	size = ft_tabsize(*env);
-	*env = (char **)malloc(sizeof(char *) * (size + 1));
+	ft_printf("sizetab: %d\n", size);
+	*env = (char **)malloc(sizeof(char *) * (size + 2));
 	i = 0;
 	while (tmp[i])
 	{
