@@ -16,10 +16,16 @@ static char		**ft_envcpy(char **environ)
 {
 	size_t		sizetab;
 	char		**env;
+	int			i;
 
 	sizetab = ft_tabsize(environ);
 	env = (char **)malloc(sizeof(char *) * (sizetab + 1));
-	ft_tabcpy(env, environ);
+	i = 0;
+	while (environ[i])
+	{
+		env[i] = ft_strdup(environ[i]);
+		i++;
+	}
 	return (env);
 }
 

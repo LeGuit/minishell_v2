@@ -51,7 +51,7 @@ int				ft_env(t_info *info, char **args)
 		sh_export(info, context, &args[index]);//care about env null
 		index++;
 	}
-	sh_exec(info, context, &args[index]);
+	sh_launch(info, context, &args[index]);
 	ft_tabdel(&context);
 	return (EXIT_FAILURE);
 }

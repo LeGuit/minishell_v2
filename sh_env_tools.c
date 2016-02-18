@@ -59,27 +59,53 @@ int				ft_unsetenv(const char *name, char **env)
 	return (EXIT_SUCCESS);
 }
 
-int				ft_replaceenv(const char *name, char *env)
+int				ft_replaceenv(const char *name, char **env)
 {
+	int			i;
+	int			sizename;
+
 	if (!name || !env)
-		return (EXIT_FAILURE);
-	free(env);
-	env = ft_strdup(name);
-	return (EXIT_SUCCESS);
+		return (1);
+	i = 0;
+	sizename = ft_strlen_ch(name, '=');
+	while (env[i])
+	{
+		if (!ft_strncmp(env[i], name, sizename) && env[i][sizename] == '=')
+		{
+			free(env[i]);
+			env[i] = ft_strdup(name);
+			break ;
+		}	
+		i++;
+	}
+	if (env[i])
+		return (0);
+	return (1);
 }
 
-int				ft_addenv(const char *newenv, char **env)
+int				ft_addenv(const char *newenv, char ***env)
 {
 	char		**tmp;
 	size_t		size;
+	int			i;
 
 	if (!newenv || !env)
 		return (EXIT_FAILURE);
-	tmp = env;
-	size = ft_tabsize(env) + 1;
-	env = (char **)malloc(sizeof(char *) * (size + 1));
-	ft_tabcpy(env, tmp);
-	env[size] = ft_strdup(newenv);
-	env[size + 1] = 0;
+	tmp = *env;
+	size = ft_tabsize(*env);
+	ft_printf("ADDENV >> tabsize: %d\t newenv: %s\n", size, newenv);
+	*env = (char **)malloc(sizeof(char *) * (size + 1));
+	i = 0;
+	while (tmp[i])
+	{
+		(*env)[i] = tmp[i];
+		ft_printf("env[%d]: %s\n", i, (*env)[i]);
+		i++;
+	}
+	(*env)[size] = ft_strdup(newenv);
+	ft_printf("env[%d]: %s\n", size, (*env)[size]);
+	(*env)[size + 1] = 0;
+	ft_printf("env[%d]: %s\n", size + 1, (*env)[size + 1]);
+	free(tmp);
 	return (EXIT_SUCCESS);
 }

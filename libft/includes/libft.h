@@ -198,6 +198,5 @@ int					ft_vect_del(t_vect *vect, int (*del)(void *));
 char				**ft_tabdup(char **ptr);
 void				ft_tabdel(char ***tab);
 size_t				ft_tabsize(char **tab);
-void				ft_tabcpy(char **dsttab, char **srctab);
 
 #endif
