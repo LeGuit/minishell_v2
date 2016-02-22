@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:56:38 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 17:17:22 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:25:42 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				ft_error_status(int signal, char *cmd)
 	else if (signal == SIGBUS)
 		ft_putstr_fd("[1] bus error  ", 2);
 	else
-		ft_putstr_fd("[1] process terminated due to receipt of signal", 2);
+		ft_putstr_fd("[1] process terminated due to receipt of signal: ", 2);
 	ft_putendl_fd(cmd, 2);
 	return (signal);
 }

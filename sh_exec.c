@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:38:10 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/18 17:23:06 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:26:01 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				sh_launch(t_info *info, char **env, char **args)
 		if (pid == 0)
 			sh_execve(info, env, args);
 		wpid = waitpid(pid, &status, WUNTRACED);
-		return (status_checker(status, args[0]));
+		return (status_checker(status, info->args[0]));
 	}
 	return (1);
 }

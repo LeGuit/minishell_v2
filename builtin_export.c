@@ -6,7 +6,7 @@
 /*   By: gwoodwar <gwoodwar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:20:18 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/18 17:21:13 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:19:46 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int				sh_export(t_info *info, char **env, char **args)
 
 	(void)env;
 	i = 0;
+	if (!args[0])
+		sh_printenv(info, env, args);
 	while (args[i])
 	{
 		if (!ft_strchr(args[i], '='))
