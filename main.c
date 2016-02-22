@@ -6,7 +6,7 @@
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 10:53:08 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/02/16 10:34:28 by gwoodwar         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:17:28 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char		**ft_envcpy(char **environ)
 	size_t		sizetab;
 	char		**env;
 	int			i;
-
 
 	sizetab = ft_tabsize(environ);
 	env = (char **)malloc(sizeof(char *) * (sizetab + 1));
